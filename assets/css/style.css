@@ -1,15 +1,21 @@
+header{
+    height: 15vh;
+}
+
 #headline{
-    background-color: red;
-    height: 100px;
+    background-color: blue;
+    height: 60%;
+
 }
 #logo{
-    background-color: blue;
-    height: 100px;
+    background-color: lightblue;
+
 }
 
 #navbar{
-    background-color: green;
-    height: 50px;
+    background-color: blueviolet;
+    height: 40%;
+
 }
 
 .nav-links{
@@ -17,5 +23,10 @@
 }
 
 main{
-    height: 500px;
+    height: 70vh;
+}
+
+footer{
+    background-color: blue;
+    height: 15vh;
 }
