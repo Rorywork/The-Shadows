@@ -1,19 +1,24 @@
+body{
+    height: 100vh;
+    width: 99vw;
+    font-size: 16px;
+}
+
 header{
-    height: 15vh;
+    height: 5%;
+    background-color: white;
 }
 
-#headline{
-    background-color: blue;
-    height: 60%;
-
+#brand{
+    color: rgb(0, 0, 0);
+    font-size: 2rem;
 }
-#logo{
-    background-color: lightblue;
 
-}
+
+
 
 #navbar{
-    background-color: blueviolet;
+    background-color: rgb(48, 42, 53);
     height: 40%;
 
 }
@@ -22,11 +27,50 @@ header{
     border: 1px solid black;
 }
 
-main{
-    height: 70vh;
-}
 
 footer{
-    background-color: blue;
-    height: 15vh;
+    background-color: rgb(50, 50, 54);
+    height: 15vh;;
+}
+
+.parallax {
+	height: 100vh;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+#parallax-1 {
+	background-image: url("https://images.pexels.com/photos/255501/pexels-photo-255501.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");
+}
+
+#parallax-2 {
+	background-image: url("https://images.pexels.com/photos/784633/pexels-photo-784633.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");
+}
+#img-overlay{
+    font-size: 50px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    padding-top: 400px;
+}
+
+#index-info-section{
+    height: 40vh;
+    background-color: white;
+}
+
+.descriptive-text{
+    font-size: 20px;
+    text-align: center;
+    color: black;
+    padding: 20%;
+}
+
+.btnbg{
+    background-color: yellow;
+}
+
+.btnbf{
+    background-color: rgb(42, 199, 55);
 }
