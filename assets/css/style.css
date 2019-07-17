@@ -1,0 +1,17 @@
+#headline{
+    background-color: red;
+    height: 100px;
+}
+#logo{
+    background-color: blue;
+    height: 100px;
+}
+
+#navbar{
+    background-color: green;
+    height: 50px;
+}
+
+.nav-links{
+    border: 1px solid black;
+}
