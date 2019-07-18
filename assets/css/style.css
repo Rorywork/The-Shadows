@@ -14,7 +14,10 @@ header{
     font-size: 2rem;
 }
 
-
+#login-button{
+    margin-top: 10px;
+    margin-left: auto;
+}
 
 
 #navbar{
@@ -30,7 +33,7 @@ header{
 
 footer{
     background-color: rgb(50, 50, 54);
-    height: 15vh;;
+    height: 150px;
 }
 
 .parallax {
@@ -42,35 +45,35 @@ footer{
 }
 
 #parallax-1 {
-	background-image: url("https://images.pexels.com/photos/255501/pexels-photo-255501.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");
+	background-image: url("https://images.pexels.com/photos/1203819/pexels-photo-1203819.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
 }
 
 #parallax-2 {
-	background-image: url("https://images.pexels.com/photos/784633/pexels-photo-784633.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");
+	background-image: url("https://images.pexels.com/photos/582635/pexels-photo-582635.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
 }
 #img-overlay{
     font-size: 50px;
     text-align: center;
     color: rgb(255, 255, 255);
-    padding-top: 400px;
+    padding-top: 800px;
+}
+.highlight{
+    color: black;
+    background-color: rgba(114, 114, 122, 0.664);
 }
 
 #index-info-section{
-    height: 40vh;
+    height: 500px;
     background-color: white;
+    padding: 200px 0px 0px 0px;
 }
 
 .descriptive-text{
     font-size: 20px;
     text-align: center;
     color: black;
-    padding: 20%;
 }
 
-.btnbg{
-    background-color: yellow;
-}
-
-.btnbf{
-    background-color: rgb(42, 199, 55);
+.footer-text{
+    color: white;
 }
