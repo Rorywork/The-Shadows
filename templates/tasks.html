@@ -4,12 +4,13 @@
     </head>
 
     <body>
+        <h3>Tasks</h3>
         {% for task in tasks %}
-            {{task.task_name}}
-            {{task.category_name}}
-            {{task.task_description}}
-            {{task.is_urgent}}
-            {{task.due_date}}
+            <p>{{task.first}}</p>
+            <p>{{task.last}}</p>
+            <p>{{task.dob}}</p>
+            <p>{{task.hair_colour}}</p>
+            <p>{{task.occupation}}</p>
         {% endfor %}
     </body>
 </html>
