@@ -77,3 +77,7 @@ footer{
 .footer-text{
     color: white;
 }
+
+form{
+    background-color: red;
+}

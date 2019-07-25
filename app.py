@@ -29,20 +29,15 @@ def about():
 
 @app.route('/upload')
 def upload():
-    return '''
-        <form method="POST" action="/create" enctype="multipart/form-data">
-            <input type="text" name="username">
-            <input type="file" name="profile_image">
-            <input type="submit">
-        </form>
-    '''
+    return render_template('upload-photo.html')
+
 
 @app.route('/create', methods=['POST'])
 def create():
-    if 'profile_image' in request.files:
-        profile_image = request.files['profile_image']
-        mongo.save_file(profile_image.filename, profile_image)
-        mongo.db.users.insert({'username' : request.form.get('username'), 'profile_image_name' : profile_image.filename})
+    if 'image_file' in request.files:
+        image_file = request.files['image_file']
+        mongo.save_file(image_file.filename, image_file)
+        mongo.db.users.insert({'username' : request.form.get('username'), 'image_file' : image_file.filename, 'image_name' : request.form.get('image_name'), 'image_description' : request.form.get('image_description')})
     
     return 'Done!'
 
