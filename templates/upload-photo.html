@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div id="upload-photo-form" class="container">
+<form method="POST" action="/create" enctype="multipart/form-data">
+
+    <div>
+    <label>First Name</label>
+    <input placeholder="Username" type="text" name="username">
+    </div>
+
+    <div>
+    <label>Upload File</label>
+    <input type="file" name="image_file">
+    </div>
+
+    <div>
+    <label>Image Name</label>
+    <input placeholder="Image Name" type="text" name="image_name">
+    </div>
+
+    <div>
+    <label>Image Description</label>
+    <input placeholder="Image Description" type="text" name="image_description">
+    </div>
+
+    <div>
+    <input type="submit">
+    </div>
+
+</form>
+</div>
+
+
+
+
+
+
+{% endblock %}

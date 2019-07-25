@@ -78,6 +78,10 @@ footer{
     color: white;
 }
 
-form{
-    background-color: red;
+#upload-photo-form{
+    margin-top: 10%;
+}
+
+input{
+    vertical-align: top;    
 }
