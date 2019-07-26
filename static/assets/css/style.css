@@ -82,6 +82,6 @@ footer{
     margin-top: 10%;
 }
 
-input{
-    vertical-align: top;    
+label{
+    padding: 30px;
 }

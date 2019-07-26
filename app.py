@@ -9,7 +9,7 @@ app.config["MONGO_DBNAME"] = 'myTestDB'
 app.config["MONGO_URI"] = 'mongodb+srv://root:B4dmintonC0d3@myfirstcluster-tdray.mongodb.net/myTestDB?retryWrites=true&w=majority'
 
 mongo = PyMongo(app)
-
+# print(mongo.db)
 
 
 
@@ -37,7 +37,7 @@ def create():
     if 'image_file' in request.files:
         image_file = request.files['image_file']
         mongo.save_file(image_file.filename, image_file)
-        mongo.db.users.insert({'username' : request.form.get('username'), 'image_file' : image_file.filename, 'image_name' : request.form.get('image_name'), 'image_description' : request.form.get('image_description')})
+        mongo.db.photos.insert({'username' : request.form.get('username'), 'image_file' : image_file.filename, 'image_name' : request.form.get('image_name'), 'image_description' : request.form.get('image_description')})
     
     return 'Done!'
 
@@ -45,14 +45,24 @@ def create():
 def file(filename):
     return mongo.send_file(filename)
 
-@app.route('/profile/<username>')
-def profile(username):
-    user = mongo.db.users.find_one_or_404({'username' : username})
+
+
+
+
+@app.route('/photo/<image_name>')
+def getImage(image_name):
+    print(image_name)
+    photo = mongo.db.photos.find_one_or_404({'image_name' : image_name})
+    print(photo)
     return f'''
-        <h1>{username}</h1>
-        <img src="{url_for('file', filename=user['profile_image_name'])}">
+        
+        <img src="{url_for('file', filename=photo['image_file'])}">
+        
     '''
 
+@app.route('/showphotos')
+def showphotos():
+    return render_template('showphotos.html', photos=mongo.db.photos.find())    
 
 
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
