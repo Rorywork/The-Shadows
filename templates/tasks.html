@@ -1,19 +1,26 @@
-<html>
-    <head>
+{% extends 'layout.html' %}
 
-    </head>
+{% block body %}
 
 
-        <h3>Tasks</h3>
-        {% for task in tasks %}
+        <h3>Photos</h3>
+        <!-- {% for task in tasks %}
             <p>{{task.first}}</p>
             <p>{{task.last}}</p>
             <p>{{task.dob}}</p>
             <p>{{task.hair_colour}}</p>
             <p>{{task.occupation}}</p>
+        {% endfor %} -->
+
+        {% for photo in photos %}
+        <p>{{photo.username}}</p>
+        <p>{{photo.image_file}}</p>
+        <p>{{photo.image_name}}</p>
+        <p>{{photo.image_description}}</p>
+        <img src={{url_for('file', filename=photo['image_file'])}}>
         {% endfor %}
 
-</html>
+{% endblock %}
 
 
 

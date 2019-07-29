@@ -23,7 +23,7 @@ def index():
 
 @app.route('/about')
 def about():
-    return render_template('tasks.html', tasks=mongo.db.myFirstMDB.find())
+    return render_template('tasks.html', photos=mongo.db.photos.find())
 
 
 
@@ -62,7 +62,7 @@ def getImage(image_name):
 
 @app.route('/showphotos')
 def showphotos():
-    return render_template('showphotos.html', photos=mongo.db.photos.find())    
+    return render_template('_showphotos.html', photos=mongo.db.photos.find())    
 
 
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
