@@ -2,17 +2,73 @@
 
 {% block body %}
 
+<form>
+    <div class="form-row align-items-center">
+      <div class="col-auto my-1">
+        <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+          <option selected>Choose...</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+      <div class="col-auto my-1">
+        <div class="custom-control custom-checkbox mr-sm-2">
+          <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
+          <label class="custom-control-label" for="customControlAutosizing">Remember my preference</label>
+        </div>
+      </div>
+      <div class="col-auto my-1">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </form>
 
-    <body>
-        <h3>Photos</h3>
-        {% for photo in photos %}
-            <p>{{photo.username}}</p>
-            <p>{{photo.image_file}}</p>
-            <p>{{photo.image_name}}</p>
-            <p>{{photo.image_description}}</p>
-            <img src={{url_for('file', filename=photo['image_file'])}}>
-        {% endfor %}
-    </body>
-</html>
+
+
+
 
 {% endblock %}
+
+
+
+<!-- <body>
+    <h3>Photos</h3>
+    {% for photo in photos %}
+        <p>{{photo.username}}</p>
+        <p>{{photo.image_file}}</p>
+        <p>{{photo.image_name}}</p>
+        <p>{{photo.image_description}}</p>
+        <img src={{url_for('file', filename=photo['image_file'])}}>
+    {% endfor %}
+</body> -->
+
+
+<!-- <main id = "gallery-body" class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-2 side-photos">
+
+                <img id="sideImage" class="img-fluid" src="https://images.pexels.com/photos/1386454/pexels-photo-1386454.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Skyscrapers">
+
+        </div>
+
+        <div class="col-8 main-photo-canvas">
+                <img id="mainImage" src="https://images.pexels.com/photos/1386454/pexels-photo-1386454.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Skyscrapers">
+                 <span class="tooltiptext">Tooltip text</span> -->
+                <!-- <button onclick="oclick()">Click me</button> -->
+        <!-- </div>
+        
+        <div class="col-2 side-photos">
+
+                <img class="img-fluid" src="https://images.pexels.com/photos/1386454/pexels-photo-1386454.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Skyscrapers">
+
+        </div>
+
+    </div>
+
+
+
+</main> --> 
