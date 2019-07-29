@@ -94,10 +94,15 @@ main{
     margin-top: 100px;
 }
 
+#gallery-headline{
+    text-align: center;
+}
+
 
 .container {
     position: relative;
     width: 75%;
+    margin-top: 20px;
   }
   
   .image {
@@ -133,4 +138,12 @@ main{
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     text-align: center;
+  }
+
+  .uploader-text{
+    color: white;
+    font-size: 20px;
+    position: absolute
+    bottom: 8px;
+    right: 16px;
   }
