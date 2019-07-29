@@ -37,16 +37,13 @@ def create():
     if 'image_file' in request.files:
         image_file = request.files['image_file']
         mongo.save_file(image_file.filename, image_file)
-        mongo.db.photos.insert({'username' : request.form.get('username'), 'image_file' : image_file.filename, 'image_name' : request.form.get('image_name'), 'image_description' : request.form.get('image_description')})
+        mongo.db.photos.insert({'username' : request.form.get('username'), 'image_file' : image_file.filename, 'image_name' : request.form.get('image_name'), 'image_description' : request.form.get('image_description'), 'image_category' : request.form.get('image_category'), 'image_rotation' : request.form.get('image_rotation')})
     
     return 'Done!'
 
 @app.route('/file/<filename>')
 def file(filename):
     return mongo.send_file(filename)
-
-
-
 
 
 @app.route('/photo/<image_name>')

@@ -22,6 +22,15 @@
         </div>
     </form>
 
+    <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="customRadioInline1" name="image_rotation" class="custom-control-input">
+            <label class="custom-control-label" for="customRadioInline1">Portrait</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="customRadioInline2" name="image_rotation" class="custom-control-input">
+            <label class="custom-control-label" for="customRadioInline2">Landscape</label>
+    </div>
+
 
 
     {% for photo in photos %}
@@ -29,17 +38,24 @@
     <section class="container">
 
         <div class="row">
-                
+
             <div class="col-12">
-                    <img src={{url_for('file', filename=photo['image_file'])}} class="image" alt="Responsive image">
+
+                <img src={{url_for('file', filename=photo['image_file'])}} class="image" alt="Responsive image">
+
                 <div class="overlay">
-                <div class="text">
-                    <p>{{photo.image_name}}</p>
-                    <p>{{photo.image_description}}</p>
-                    <p>{{photo.username}}</p>
+                    <div class="text">
+                        <p>{{photo.image_name}}</p>
+                        <p>"{{photo.image_description}}"</p>
+                    </div>
+                    <div id="bottom-right-overlay">
+                    <p id="username-text">{{photo.username}}</p>
+                    </div>
                 </div>
 
-            </div>
+
+
+
 
             </div>
         </div>
@@ -53,6 +69,3 @@
 
 
 {% endblock %}
-
-
-
