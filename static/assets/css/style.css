@@ -8,20 +8,11 @@
 }
 
 
-
-
-
-
 body{
     height: 100vh;
     width: 99vw;
     font-size: 16px;
     font-family: 'Josefin Slab', serif;
-}
-
-header{
-    height: 5%;
-    background-color: white;
 }
 
 #brand{
@@ -62,9 +53,8 @@ footer{
 }
 
 #index-info-section{
-    height: 500px;
+    height: 200px;
     background-color: white;
-    padding: 200px 0px 0px 0px;
 }
 
 .descriptive-text{
