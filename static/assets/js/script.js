@@ -1,3 +1,3 @@
-function oclick(){
-    console.log("working")
-}
+$(document).ready(function(){
+  $('.sidenav').sidenav();
+});
