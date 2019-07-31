@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Josefin+Slab&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
 
 /* Navbar */
@@ -12,15 +12,18 @@ body{
     height: 100vh;
     width: 99vw;
     font-size: 16px;
-    font-family: sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
-
 
 
 #brand{
     color: rgb(0, 0, 0);
     font-size: 2rem;
-    font-family: 'Josefin Slab', serif;
+
+}
+
+footer{
+    padding-top: 20px;
 }
 
 .navbar-brand{
@@ -28,10 +31,15 @@ body{
 }
 
 
-footer{
-    background-color: rgb(50, 50, 54);
-    height: 150px;
+
+.fab{
+    color: white;
+    font-size: 3rem;
 }
+
+
+
+
 
 .parallax {
 	height: 100vh;
@@ -70,9 +78,7 @@ footer{
     color: black;
 }
 
-.footer-text{
-    color: white;
-}
+
 
 #upload-photo-form{
     margin-top: 10%;

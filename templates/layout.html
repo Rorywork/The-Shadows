@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,11 @@
     <title>The Shadows</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <link rel="stylesheet" href="../static/assets/css/style.css">
 
 </head>
+
 <body>
 
     {% include 'includes/_navbar.html' %}
@@ -21,28 +24,54 @@
 
 
 
-        {% block body %}
-        
-        {% endblock %}
+    {% block body %}
 
-        <footer class="container-fluid">
-                <div class="row">
-                    <div class="col-3">
-                    </div>
-                    <div class="col-3">
-                    </div>
-                    <div class="col-3">
-                    </div>  
-                    <div class="col-3">
-                        <p class="footer-text">Design and build by Rorywork</p>
-                    </div>
-                </div>
-            </footer>
+    {% endblock %}
 
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <footer class="container-fluid grey lighten-1 white-text ">
+        <div class="row">
+
+
+                    <div class="col s4">                
+                            <p class="footer-text">Design and build by
+                            <a target="_blank" href="https://github.com/Rorywork" title="Go to my Github" rel="noopener"> Rorywork</a></p>
+                    </div>
+
+
+                    <div class="col s1">
+                        <a target="_blank" href="https://www.instagram.com" title="Go to Instragram" rel="noopener">
+                            <i class="fab fa-instagram footer-social"></i>
+                        </a>
+                    </div>
+
+                    <div class="col s1">
+                        <a target="_blank" href="https://www.facebook.com" title="Go to Facebook" rel="noopener">
+                            <i class="fab fa-facebook-f footer-social"></i>
+                        </a>
+                    </div>
+                    <div class="col s1">
+                        <a target="_blank" href="https://www.youtube.com" title="Go to Youtube" rel="noopener">
+                            <i class="fab fa-youtube footer-social"></i>
+                        </a>
+                    </div>
+                    <div class="col s1">
+                        <a target="_blank" href="https://www.twitter.com" title="Go to Twitter" rel="noopener">
+                            <i class="fab fa-twitter footer-social"></i>
+                        </a>
+                    </div>
+                    <div class="col s4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, quisquam! Eum, voluptate autem, nemo pariatur rerum nostrum nam labore culpa eos voluptatibus quibusdam ab itaque obcaecati quasi unde ipsam veniam?</div>
+
+
+
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="../static/assets/js/script.js"></script>
 
-            
+
 </body>
+
 </html>
