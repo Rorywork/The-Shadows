@@ -13,11 +13,12 @@
 
 </head>
 
-<body>
+<body class="grey lighten-3">
+    <header>
 
     {% include 'includes/_navbar.html' %}
-
-
+    
+    </header>
 
 
 
@@ -28,43 +29,30 @@
 
     {% endblock %}
 
-    <footer class="container-fluid grey lighten-1 white-text ">
-        <div class="row">
+    <footer class="page-footer grey lighten-1">
+            <div class="container">
+              <div class="row">
+                <div class="col l6 s12">
+                  <h5 class="white-text">The Shadows</h5>
+                  <p class="grey-text text-lighten-4">The home of all things grey...</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                  <h5 class="white-text">Social</h5>
+                  <ul>
+                    <li><a class="grey-text text-lighten-3" href="https://www.instagram.com"><i class="fab fa-instagram"></i></a></li>
+                    <li><a class="grey-text text-lighten-3" href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="footer-copyright">
+              <div class="container">
+              © 2019 Copyright 
+              <a class="grey-text text-lighten-4 right" href="https://github.com/Rorywork">Designed by Rorywork</a>
+              </div>
+            </div>
+          </footer>
 
-
-                    <div class="col s4">                
-                            <p class="footer-text">Design and build by
-                            <a target="_blank" href="https://github.com/Rorywork" title="Go to my Github" rel="noopener"> Rorywork</a></p>
-                    </div>
-
-
-                    <div class="col s1">
-                        <a target="_blank" href="https://www.instagram.com" title="Go to Instragram" rel="noopener">
-                            <i class="fab fa-instagram footer-social"></i>
-                        </a>
-                    </div>
-
-                    <div class="col s1">
-                        <a target="_blank" href="https://www.facebook.com" title="Go to Facebook" rel="noopener">
-                            <i class="fab fa-facebook-f footer-social"></i>
-                        </a>
-                    </div>
-                    <div class="col s1">
-                        <a target="_blank" href="https://www.youtube.com" title="Go to Youtube" rel="noopener">
-                            <i class="fab fa-youtube footer-social"></i>
-                        </a>
-                    </div>
-                    <div class="col s1">
-                        <a target="_blank" href="https://www.twitter.com" title="Go to Twitter" rel="noopener">
-                            <i class="fab fa-twitter footer-social"></i>
-                        </a>
-                    </div>
-                    <div class="col s4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, quisquam! Eum, voluptate autem, nemo pariatur rerum nostrum nam labore culpa eos voluptatibus quibusdam ab itaque obcaecati quasi unde ipsam veniam?</div>
-
-
-
-        </div>
-    </footer>
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
