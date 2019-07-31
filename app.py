@@ -62,6 +62,27 @@ def showphotos():
     return render_template('_showphotos.html', photos=mongo.db.photos.find())    
 
 
+@app.route('/showphotosbycategory/<category>')
+def showphotosbycategory(category):
+    return render_template('_showphotos.html', photos=mongo.db.photos.find({"image_category" : category }))
+
+
+@app.route('/deletephoto/<photoid>')
+def deletephoto(photoid):
+    photo2delete = mongo.db.photos.find_one_or_404({"_id" : ObjectId(photoid)})
+    mongo.db.photos.delete_one({"_id" : ObjectId(photoid)})
+    return f'''
+        <h1>{photo2delete['image_description']} DELETED.</h1>
+    '''
+
+# @app.route('/editphotodetails/<photoid>')
+# def editphotodetails(photoid):
+#     photo2edit = mongo.db.photos.find_one_or_404({"_id" : ObjectId(photoid)})
+#     form = 
+
+
+
+
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 if __name__ == '__main__':
     app.run(debug=True)
