@@ -161,4 +161,17 @@ label{
       height: 100px;
       width: 100px;
       text-align: center;
+      border: 2px solid rgb(0, 0, 0);
+  }
+
+  .film:hover{
+    color: red;
+  }
+
+  .black{
+      display: inline-block;
+  }
+
+  .parent{
+      text-align: center;
   }
