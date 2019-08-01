@@ -6,6 +6,19 @@
 
     <h1 id="gallery-headline">Gallery</h1>
 
+    <div class="black">
+
+    <button class="film">People</button>
+    <button class="film">Animals</button>
+    <button class="film">Natural</button>
+    <button class="film">Urban</button>
+    <button class="film">Food/Drink</button>
+    <button class="film">Objects</button>
+    <button class="film">Abstract</button>
+    <button class="film">Other</button>
+
+    </div>
+
     <form>
         <div class="form-row align-items-center">
             <div class="col-auto my-1">
@@ -64,6 +77,8 @@
     </section>
 
     <a href="/deletephoto/{{photo._id}}">Delete above photo</a>
+    &nbsp;&nbsp;
+    <a href="/editphotodetails/{{photo._id}}">Edit above photo</a>
     {% endfor %}
 
 </main>

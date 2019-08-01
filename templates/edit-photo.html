@@ -3,18 +3,18 @@
 {% block body %}
 
 <div id="upload-photo-form" class="container">
-<form method="POST" action="/create" enctype="multipart/form-data">
+<form method="POST" action="" enctype="multipart/form-data">
 
     <div>
-    <input placeholder="Username" type="text" name="username">
+      Username<input placeholder="Username" type="text" name="username" value = {{form.username.data}}>
     </div>
 
     <div>
-    <input placeholder="Image Name" type="text" name="image_name">
+      Image Name<input placeholder="Image Name" type="text" name="image_name" value = "{{form.image_name.data}}">
     </div>
 
     <div>
-    <input placeholder="Image Description" type="text" name="image_description">
+      Image Description<input placeholder="Image Description" type="text" name="image_description" value = "{{form.image_description.data}}">
     </div>
 
     <div>
@@ -30,7 +30,7 @@
               <option>Urban</option>
               <option>Food and Drinks</option>
               <option>Objects</option>
-              <option>Abstract</option>
+              <option>Abstract and Patterns</option>
               <option>Other</option>
             </select>
     </div>

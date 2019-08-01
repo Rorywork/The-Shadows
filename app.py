@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 
 app = Flask(__name__)
 
@@ -59,12 +60,12 @@ def getImage(image_name):
 
 @app.route('/showphotos')
 def showphotos():
-    return render_template('_showphotos.html', photos=mongo.db.photos.find())    
+    return render_template('showphotos.html', photos=mongo.db.photos.find())    
 
 
 @app.route('/showphotosbycategory/<category>')
 def showphotosbycategory(category):
-    return render_template('_showphotos.html', photos=mongo.db.photos.find({"image_category" : category }))
+    return render_template('showphotos.html', photos=mongo.db.photos.find({"image_category" : category }))
 
 
 @app.route('/deletephoto/<photoid>')
@@ -75,10 +76,31 @@ def deletephoto(photoid):
         <h1>{photo2delete['image_description']} DELETED.</h1>
     '''
 
-# @app.route('/editphotodetails/<photoid>')
-# def editphotodetails(photoid):
-#     photo2edit = mongo.db.photos.find_one_or_404({"_id" : ObjectId(photoid)})
-#     form = 
+class PhotoForm(Form):
+    username = StringField('User Name', [validators.Length(min=1, max=50)])
+    image_name = StringField('Image Name', [validators.Length(min=1, max=200)])
+    image_description = StringField('Image Description', [validators.Length(min=1, max=200)])
+
+
+
+@app.route('/editphotodetails/<photoid>', methods=['GET', 'POST'])
+def editphotodetails(photoid):
+    #Get photo to edit
+    photo2edit = mongo.db.photos.find_one_or_404({"_id" : ObjectId(photoid)})
+    #Get form to edit
+    form = PhotoForm(request.form)
+    #Pre-populate form with values
+    print(photo2edit['username'])
+    form.username.data = photo2edit['username']
+    form.image_name.data = photo2edit['image_name']
+    form.image_description.data = photo2edit['image_description']
+    if request.method =='POST' and form.validate():
+        username = request.form['username']
+        image_name = request.form['image_name']
+        image_description = request.form['image_description']
+        # ..... more to come.....
+    return render_template('edit-photo.html', form=form)    
+
 
 
 
