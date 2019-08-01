@@ -103,7 +103,7 @@ label{
 .container {
     position: relative;
     width: 75%;
-    margin-top: 20px;
+    margin-top: 100px;
   }
   
   .image {
@@ -145,6 +145,17 @@ label{
     position: absolute;
   }
 
+  .edit-delete-buttons{
+      float: right;
+      margin-right: 10%;
+  }
+
+  .material-icons{
+      font-size: 4rem;
+      color: rgb(0, 0, 0);
+  }
+
+
   #bottom-right-overlay{
     color: white;
     font-size: 16px;
@@ -162,13 +173,16 @@ label{
       width: 100px;
       text-align: center;
       border: 2px solid rgb(0, 0, 0);
+
   }
 
   .film:hover{
-    color: red;
+    color: rgb(204, 167, 47);
+    border: 2px solid rgb(204, 167, 47);
+    font-weight: bolder;
   }
 
-  .black{
+  .film-reel{
       display: inline-block;
   }
 

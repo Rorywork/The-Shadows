@@ -8,10 +8,11 @@
 
 
 <div class="parent">
-    <div class="black">
+    <div class="film-reel">
 
-    <button class="film">People</button>
-    <button class="film">Animals</button>
+    <button onclick="window.location.href = '/showphotos';" class="film">All</button>
+    <button onclick="window.location.href = '/showphotosbycategory/People';" class="film">People</button>
+    <button onclick="window.location.href = '/showphotosbycategory/Animals';" class="film">Animal</button>
     <button class="film">Natural</button>
     <button class="film">Urban</button>
     <button class="film">Food/Drink</button>
@@ -19,33 +20,11 @@
     <button class="film">Abstract</button>
     <button class="film">Other</button>
 
+
     </div>
 </div>
 
-    <form>
-        <div class="form-row align-items-center">
-            <div class="col-auto my-1">
-                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                    <option selected>Category</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-            </div>
-            <div class="col-auto my-1">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </div>
-    </form>
 
-    <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="customRadioInline1" name="image_rotation" class="custom-control-input">
-            <label class="custom-control-label" for="customRadioInline1">Portrait</label>
-          </div>
-          <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="customRadioInline2" name="image_rotation" class="custom-control-input">
-            <label class="custom-control-label" for="customRadioInline2">Landscape</label>
-    </div>
 
 
 
@@ -79,9 +58,13 @@
         
     </section>
 
-    <a href="/deletephoto/{{photo._id}}">Delete above photo</a>
-    &nbsp;&nbsp;
-    <a href="/editphotodetails/{{photo._id}}">Edit above photo</a>
+    <div class="edit-delete-buttons">
+        <a href="/editphotodetails/{{photo._id}}"><i class="material-icons">edit</i></a>
+        <a href="/deletephoto/{{photo._id}}"><i class="material-icons">delete</i></a>
+    </div>
+
+
+
     {% endfor %}
 
 </main>
