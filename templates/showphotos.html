@@ -25,7 +25,6 @@
     </div>
 
 
-
     {% for photo in photos %}
 
     <section class="container">
@@ -46,21 +45,13 @@
                     </div>
                 </div>
 
+                
+
                 {% for comment in photo.comments %}
-
-                <div class="comments">
-
+                <div class="com{{photo._id}}">
                     <p>{{comment}}</p>
-
                 </div>
-
-
-
                 {% endfor %}
-
-
-
-
 
             </div>
 
@@ -71,30 +62,36 @@
     <div class="edit-delete-buttons">
         <a href="/editphotodetails/{{photo._id}}"><i class="material-icons">edit</i></a>
         <a href="/deletephoto/{{photo._id}}"><i class="material-icons">delete</i></a>
-        <button data-target="modal1" class="btn modal-trigger">Modal</button>
-
+        <!-- <button onclick="ToggleVisibility('photocomments')">Show/Hide</button> -->
+        <button onclick="showhidecomments('com{{photo._id}}')">Show/Hide Comments</button>
     </div>
-
-    {% for comment in photo.comments %}
-    <div id="modal1" class="modal">
-        <div class="modal-content">
-            <h4>Comments</h4>
-
-            <div class="comments">
-                <p>{{comment}}</p>
-            </div>
-
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-        </div>
-    </div>
-
-    {% endfor %}
+    
+    
     {% endfor %}
 
 </main>
 
-
+<script>
+function showhidecomments(divClass) {
+    var x = document.getElementsByClassName(divClass);
+    for(var i = 0; i < x.length; i++)
+    {
+    if (x[i].style.display === "none") {
+      x[i].style.display = "block";
+    } else {
+      x[i].style.display = "none";
+    }
+    }
+    console.log("xxx");
+  }
+function ToggleVisibility(divClass)
+{
+    var els = document.getElementsByClassName(divClass);
+    for(var i = 0; i < els.length; i++)
+    {
+        els[i].style.visibility = els[i].style.visibility == "hidden" ? "visible" : "hidden";
+    }
+}
+</script>
 
 {% endblock %}
