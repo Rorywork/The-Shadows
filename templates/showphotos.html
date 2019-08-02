@@ -7,24 +7,22 @@
     <h1 id="gallery-headline">Gallery</h1>
 
 
-<div class="parent">
-    <div class="film-reel">
+    <div class="parent">
+        <div class="film-reel">
 
-    <button onclick="window.location.href = '/showphotos';" class="film">All</button>
-    <button onclick="window.location.href = '/showphotosbycategory/People';" class="film">People</button>
-    <button onclick="window.location.href = '/showphotosbycategory/Animals';" class="film">Animals</button>
-    <button class="film">Natural</button>
-    <button class="film">Urban</button>
-    <button class="film">Food/Drink</button>
-    <button class="film">Objects</button>
-    <button class="film">Abstract</button>
-    <button class="film">Other</button>
+            <button onclick="window.location.href = '/showphotos';" class="film">All</button>
+            <button onclick="window.location.href = '/showphotosbycategory/People';" class="film">People</button>
+            <button onclick="window.location.href = '/showphotosbycategory/Animals';" class="film">Animals</button>
+            <button class="film">Natural</button>
+            <button class="film">Urban</button>
+            <button class="film">Food/Drink</button>
+            <button class="film">Objects</button>
+            <button class="film">Abstract</button>
+            <button class="film">Other</button>
 
 
+        </div>
     </div>
-</div>
-
-
 
 
 
@@ -44,27 +42,55 @@
                         <p>"{{photo.image_description}}"</p>
                     </div>
                     <div id="bottom-right-overlay">
-                    <p id="username-text">{{photo.username}}</p>
+                        <p id="username-text">{{photo.username}}</p>
                     </div>
                 </div>
+
+                {% for comment in photo.comments %}
+
+                <div class="comments">
+
+                    <p>{{comment}}</p>
+
+                </div>
+
+
+
+                {% endfor %}
 
 
 
 
 
             </div>
-        
+
         </div>
-        
+
     </section>
 
     <div class="edit-delete-buttons">
         <a href="/editphotodetails/{{photo._id}}"><i class="material-icons">edit</i></a>
         <a href="/deletephoto/{{photo._id}}"><i class="material-icons">delete</i></a>
+        <button data-target="modal1" class="btn modal-trigger">Modal</button>
+
     </div>
 
+    {% for comment in photo.comments %}
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>Comments</h4>
 
+            <div class="comments">
+                <p>{{comment}}</p>
+            </div>
 
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+    </div>
+
+    {% endfor %}
     {% endfor %}
 
 </main>

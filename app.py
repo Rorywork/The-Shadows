@@ -1,31 +1,20 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, flash, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 
 app = Flask(__name__)
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 app.config["MONGO_DBNAME"] = 'myTestDB'
 app.config["MONGO_URI"] = 'mongodb+srv://root:B4dmintonC0d3@myfirstcluster-tdray.mongodb.net/myTestDB?retryWrites=true&w=majority'
 
 mongo = PyMongo(app)
-# print(mongo.db)
-
-
-
-#@app.route('/get_tasks')
-#def get_tasks():
-#    return render_template('tasks.html', tasks=mongo.db.tasks.find())
 
 @app.route('/')
 def index():
     return render_template('home.html')
-
-@app.route('/about')
-def about():
-    return render_template('tasks.html', photos=mongo.db.photos.find())
-
 
 
 @app.route('/upload')
@@ -39,8 +28,9 @@ def create():
         image_file = request.files['image_file']
         mongo.save_file(image_file.filename, image_file)
         mongo.db.photos.insert({'username' : request.form.get('username'), 'image_file' : image_file.filename, 'image_name' : request.form.get('image_name'), 'image_description' : request.form.get('image_description'), 'image_category' : request.form.get('image_category'), 'image_rotation' : request.form.get('image_rotation')})
-    
-    return 'Done!'
+        #photo2show = mongo.db.photos.find_one_or_404({"_id" : ObjectId(photoid)})
+        flash("The photo was uploaded to the site.")
+    return render_template('showphotos.html', photos=mongo.db.photos.find().sort([('_id', -1),]))
 
 @app.route('/file/<filename>')
 def file(filename):
@@ -60,21 +50,25 @@ def getImage(image_name):
 
 @app.route('/showphotos')
 def showphotos():
-    return render_template('showphotos.html', photos=mongo.db.photos.find())    
+    # Show all photo sorted by creation date - from the _id    
+    return render_template('showphotos.html', photos=mongo.db.photos.find().sort([('_id', -1),]))    
 
 
 @app.route('/showphotosbycategory/<category>')
 def showphotosbycategory(category):
-    return render_template('showphotos.html', photos=mongo.db.photos.find({"image_category" : category }))
+    flash("Showing photographs for the category: {}".format(category))
+    return render_template('showphotos.html', photos=mongo.db.photos.find({"image_category" : category }).sort([('_id', -1),]))
 
 
 @app.route('/deletephoto/<photoid>')
 def deletephoto(photoid):
     photo2delete = mongo.db.photos.find_one_or_404({"_id" : ObjectId(photoid)})
     mongo.db.photos.delete_one({"_id" : ObjectId(photoid)})
-    return f'''
-        <h1>{photo2delete['image_description']} DELETED.</h1>
-    '''
+    flash("The photograph {} has been deleted.".format(photo2delete['image_name']))
+    # return f'''
+    #     <h1>{photo2delete['image_description']} DELETED.</h1>
+    # '''
+    return render_template('showphotos.html', photos=mongo.db.photos.find().sort([('_id', -1),]))    
 
 class PhotoForm(Form):
     username = StringField('User Name', [validators.Length(min=1, max=50)])
