@@ -121,7 +121,17 @@ class RegisterForm(Form):
 def register():
     form = RegisterForm(request.form)
     if request.method == 'POST' and form.validate():
-        return render_template('register.html')
+        name = form.name.data
+        email = form.email.data
+        username = form.username.data
+        password = sha256_crypt.encrypt(str(form.password.data))
+        #insert into the MongoDB
+        mongo.db.users.insert({'name' : name, 'email' : email, 'username' : username, 'password' : password})
+        
+        flash('You are now registered and can log in', 'success')
+
+
+        return redirect(url_for('home'))
     return render_template('register.html', form=form)
 
 
