@@ -190,4 +190,7 @@ label{
       text-align: center;
   }
 
- 
+ .image-thumbnail{
+    max-width: 150px;
+    height: auto;
+ }

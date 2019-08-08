@@ -1,8 +1,9 @@
 import os
-from flask import Flask, flash, render_template, redirect, request, url_for
+from flask import Flask, flash, render_template, redirect, request, url_for, session, logging
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from wtforms import Form, StringField, TextAreaField, PasswordField, validators
+from wtforms import Form, StringField, SelectField, TextAreaField, PasswordField, validators
+from passlib.hash import sha256_crypt
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
@@ -74,6 +75,8 @@ class PhotoForm(Form):
     username = StringField('User Name', [validators.Length(min=1, max=50)])
     image_name = StringField('Image Name', [validators.Length(min=1, max=200)])
     image_description = StringField('Image Description', [validators.Length(min=1, max=200)])
+    image_file = StringField('Image File', [validators.Length(min=1, max=500)])
+    #image_category = SelectField('Image Category',choices=['People','Animals','Natural', 'Urban'])
 
 
 
@@ -88,11 +91,20 @@ def editphotodetails(photoid):
     form.username.data = photo2edit['username']
     form.image_name.data = photo2edit['image_name']
     form.image_description.data = photo2edit['image_description']
+    form.image_file.data = photo2edit['image_file']
+    #form.image_category.data = photo2edit['image_category']
     if request.method =='POST' and form.validate():
         username = request.form['username']
         image_name = request.form['image_name']
         image_description = request.form['image_description']
+        #image_file = request.form['image_file'] ..... cannot capture this due to HTML security
+        #image_category = request.form['image_category']
+        # Update the record
+        mongo.db.photos.update_one({"_id" : ObjectId(photoid)} , { '$set' : {'username': username}})
         # ..... more to come.....
+        flash('Photo {} has been updated.'.format(image_name), 'success')
+        return render_template('showphotos.html', photos=mongo.db.photos.find().sort([('_id', -1),]))    
+
     return render_template('edit-photo.html', form=form)    
 
 
