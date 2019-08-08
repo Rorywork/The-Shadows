@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+
+    <h1>Register</h1>
+
+    <form method="POST" action="">
+
+        <div>
+            {{render_field(form.name)}}
+        </div>
+        <div>
+            {{render_field(form.email)}}
+        </div>
+        <div>
+            {{render_field(form.username)}}
+        </div>
+        <div>
+            {{render_field(form.password)}}
+        </div>
+        <div>
+            {{render_field(form.confirm)}}
+        </div>
+
+        <p><input type="submit" class="btn" value="Submit"></p>
+
+
+    </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
