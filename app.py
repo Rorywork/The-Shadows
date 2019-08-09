@@ -134,6 +134,26 @@ def register():
         return redirect(url_for('home'))
     return render_template('register.html', form=form)
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password_candidate = request.form['password']
+
+        result = mongo.db.users.find({'username' : username})
+        app.logger.info(result)
+        if result > 0:
+
+            password = result['password']
+
+            if sha256_crypt.verify(password_candidate, password)
+                app.logger.info('PASSWORD MATCHED')
+
+        else:
+            app.logger.info('NO USER')
+
+    return render_template('login.html')
+
 
 
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
