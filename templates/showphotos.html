@@ -60,9 +60,10 @@
     </section>
 
     <div class="edit-delete-buttons">
-        <a href="/editphotodetails/{{photo._id}}"><i class="material-icons">edit</i></a>
-        <a href="/deletephoto/{{photo._id}}"><i class="material-icons">delete</i></a>
-        <!-- <button onclick="ToggleVisibility('photocomments')">Show/Hide</button> -->
+        {% if session.username == "Rorywork" %}
+            <a href="/editphotodetails/{{photo._id}}"><i class="material-icons">edit</i></a>
+            <a href="/deletephoto/{{photo._id}}"><i class="material-icons">delete</i></a>
+        {% endif %}
         <button onclick="showhidecomments('com{{photo._id}}')">Show/Hide Comments</button>
     </div>
     

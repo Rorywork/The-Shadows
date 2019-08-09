@@ -4,6 +4,7 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from wtforms import Form, StringField, SelectField, TextAreaField, PasswordField, validators
 from passlib.hash import sha256_crypt
+from functools import wraps
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
@@ -13,12 +14,23 @@ app.config["MONGO_URI"] = 'mongodb+srv://root:B4dmintonC0d3@myfirstcluster-tdray
 
 mongo = PyMongo(app)
 
+def is_logged_in(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if 'logged_in' in session: 
+            return f(*args, **kwargs)
+        else:
+            flash('Unauthorized, Please login', 'danger')
+            return redirect(url_for('login'))
+    return wrap
+
 @app.route('/')
 def index():
     return render_template('home.html')
 
 
 @app.route('/upload')
+@is_logged_in
 def upload():
     return render_template('upload-photo.html')
 
@@ -130,8 +142,7 @@ def register():
         
         flash('You are now registered and can log in', 'success')
 
-
-        return redirect(url_for('home'))
+        return redirect(url_for('login'))
     return render_template('register.html', form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -140,19 +151,35 @@ def login():
         username = request.form['username']
         password_candidate = request.form['password']
 
-        result = mongo.db.users.find({'username' : username})
-        app.logger.info(result)
-        if result > 0:
+        doc_count = mongo.db.users.count_documents({'username' : username})
+        
+        if doc_count > 0:
 
+            result = mongo.db.users.find_one_or_404({'username' : username})
             password = result['password']
 
-            if sha256_crypt.verify(password_candidate, password)
-                app.logger.info('PASSWORD MATCHED')
+            if sha256_crypt.verify(password_candidate, password):
+                session['logged_in'] = True
+                session['username'] = username
+
+                flash('You are now logged in', 'success')
+                return redirect(url_for('showphotos'))
+            else:
+                error = 'Invalid Login'
+                return render_template('login.html', error=error)
 
         else:
-            app.logger.info('NO USER')
+
+            error = 'Username not found'
+            return render_template('login.html', error=error)
 
     return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    flash('You are now logged out', 'success')
+    return redirect (url_for('login'))
 
 
 
