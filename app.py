@@ -7,10 +7,10 @@ from passlib.hash import sha256_crypt
 from functools import wraps
 
 app = Flask(__name__)
-app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+app.secret_key =  os.environ.get('SECRET_KEY')
 
 app.config["MONGO_DBNAME"] = 'myTestDB'
-app.config["MONGO_URI"] = 'mongodb+srv://root:B4dmintonC0d3@myfirstcluster-tdray.mongodb.net/myTestDB?retryWrites=true&w=majority'
+app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 
 mongo = PyMongo(app)
 
