@@ -184,12 +184,12 @@ def logout():
 
 
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-if __name__ == '__main__':
-    app.run(debug=True)
+# if __name__ == '__main__':
+#     app.run(debug=True)
 
 # The above is required for local development but
 # needs to be commented out to run in Heroku and replaced with the below code
 
-#if __name__ == '__main__':
-#    from os import environ
-#    app.run(debug=False, host='0.0.0.0',port=environ.get("PORT", 5000))    
+if __name__ == '__main__':
+   from os import environ
+   app.run(debug=False, host='0.0.0.0',port=environ.get("PORT", 5000))    
