@@ -44,7 +44,7 @@ def create():
     if 'image_file' in request.files:
         image_file = request.files['image_file']
         MONGO.save_file(image_file.filename, image_file)
-        MONGO.db.photos.insert({'username': request.form.get('username'), 'image_file': image_file.filename, 'image_name': request.form.get(
+        MONGO.db.photos.insert({'username': session['username'], 'image_file': image_file.filename, 'image_name': request.form.get(
             'image_name'), 'image_description': request.form.get('image_description'), 'image_category': request.form.get('image_category'), 'image_rotation': request.form.get('image_rotation')})
         #photo2show = mongo.db.photos.find_one_or_404({"_id" : ObjectId(photoid)})
         flash("The photo was uploaded to the site.")
@@ -67,6 +67,10 @@ def getImage(image_name):
         
     '''
 
+
+@APP.route('/showphoto/<photoid>')
+def showphoto(photoid):
+    return render_template('showphotos.html', photos=MONGO.db.photos.find({"_id": ObjectId(photoid)}))    
 
 @APP.route('/showphotos')
 def showphotos():
@@ -119,15 +123,23 @@ def editphotodetails(photoid):
         image_name = request.form['image_name']
         image_description = request.form['image_description']
         # image_file = request.form['image_file'] ..... cannot capture this due to HTML security
-        #image_category = request.form['image_category']
+        image_category = request.form['image_category']
         # Update the record
         MONGO.db.photos.update_one({"_id": ObjectId(photoid)}, {
-                                   '$set': {'username': username}})
-        # ..... more to come.....
+            '$set': {'username': username, 'image_name': image_name, 'image_description': image_description, "image_category": image_category }})
+
         flash('Photo {} has been updated.'.format(image_name), 'success')
         return render_template('showphotos.html', photos=MONGO.db.photos.find().sort([('_id', -1), ]))
 
     return render_template('edit-photo.html', form=form)
+
+@APP.route('/postcomment/<photoid>', methods=['POST'])
+def postcomment(photoid):
+    print(photoid)
+    print(request.form.get('comment'))
+    MONGO.db.photos.update_one({'_id': ObjectId(photoid)}, {'$push': {'comments': request.form.get('comment')}}, upsert=True)
+    flash("Your comment has been added to the photo.")
+    return redirect(url_for('showphoto', photoid=photoid))
 
 
 class RegisterForm(Form):
@@ -152,10 +164,11 @@ def register():
         # insert into the MongoDB
         MONGO.db.users.insert(
             {'name': name, 'email': email, 'username': username, 'password': password})
+        session['logged_in'] = True
+        session['username'] = username
+        flash('You are now registered and have full access to the site', 'success')
 
-        flash('You are now registered and can log in', 'success')
-
-        return redirect(url_for('login'))
+        return redirect(url_for('showphotos'))
     return render_template('register.html', form=form)
 
 

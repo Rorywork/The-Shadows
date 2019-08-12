@@ -49,11 +49,16 @@
 
                 {% for comment in photo.comments %}
                 <div class="com{{photo._id}}">
-                    <p>{{comment}}</p>
+                    <p><i>{{comment}}</i></p>
                 </div>
                 {% endfor %}
 
+                
             </div>
+            <p>Add a comment</p>
+            <form action="/postcomment/{{photo._id}}" method="post">
+                <input type="text" name="comment">&nbsp;<input type="submit" value="Submit">
+            </form>
 
         </div>
 
