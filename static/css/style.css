@@ -121,6 +121,7 @@ label{
     height: 100%;
     width: 100%;
     opacity: 0;
+    -webkit-transition: .5s ease;
     transition: .5s ease;
     background-color: rgba(0, 0, 0, 0.8);
   }
@@ -136,7 +137,6 @@ label{
     top: 50%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     text-align: center;
   }
@@ -194,3 +194,16 @@ label{
     max-width: 150px;
     height: auto;
  }
+
+ .pagination-page-info { padding: .6em; 
+    padding-left: 0; 
+    width: 40em; 
+    margin: .5em; 
+    margin-left: 0; 
+    font-size: 12px; } 
+
+ .pagination-page-info b { color: black; 
+    background: #6aa6ed; 
+    padding-left: 2px; 
+    padding: .1em .25em; 
+    font-size: 150%; } 

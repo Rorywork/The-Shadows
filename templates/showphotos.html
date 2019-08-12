@@ -24,6 +24,7 @@
         </div>
     </div>
 
+    {{ pagination.info }}
 
     {% for photo in photos %}
 
@@ -72,7 +73,8 @@
         <button onclick="showhidecomments('com{{photo._id}}')">Show/Hide Comments</button>
     </div>
     
-    
+
+
     {% endfor %}
 
 </main>
@@ -99,5 +101,5 @@ function ToggleVisibility(divClass)
     }
 }
 </script>
-
+{{ pagination.links }}
 {% endblock %}

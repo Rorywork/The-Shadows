@@ -5,6 +5,7 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from wtforms import Form, StringField, SelectField, TextAreaField, PasswordField, validators
 from passlib.hash import sha256_crypt
+from flask_paginate import Pagination, get_page_parameter
 
 
 APP = Flask(__name__)
@@ -75,7 +76,16 @@ def showphoto(photoid):
 @APP.route('/showphotos')
 def showphotos():
     # Show all photo sorted by creation date - from the _id
-    return render_template('showphotos.html', photos=MONGO.db.photos.find().sort([('_id', -1), ]))
+    search = False
+    q = request.args.get('q')
+    page = request.args.get(get_page_parameter(), type=int, default=1)
+    per_page = 5
+    bs_version = 4
+    photos = MONGO.db.photos
+    allphotos = photos.find().skip((page - 1) * per_page).limit(per_page)
+    pagination = Pagination(page=page, per_page=5, total=allphotos.count(), search=search, record_name='photos', bs_version=bs_version, css_framework='bootstrap', show_single_page=False)
+
+    return render_template('showphotos.html', photos= allphotos, pagination= pagination)
 
 
 @APP.route('/showphotosbycategory/<category>')
