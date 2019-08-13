@@ -1,18 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
-
-
-/* Navbar */
-
-/* .nav-wrapper{
-    background-color: rgb(70, 70, 70);
-} */
-
 
 body{
     height: 100vh;
     width: 99vw;
     font-size: 16px;
-    font-family: 'Roboto', sans-serif;
+    /* font-family: 'Roboto', sans-serif; */
 }
 
 
@@ -23,7 +14,8 @@ body{
 }
 
 footer{
-    padding-top: 20px;
+    border: silver 1px solid;
+    margin-top: 100px;
 }
 
 .navbar-brand{
@@ -33,12 +25,20 @@ footer{
 
 
 .fab{
-    color: white;
+    color: rgb(116, 116, 116);
     font-size: 2rem;
     padding: 10px;
 }
 
+.fab:hover{
+    color: rgb(0, 0, 0);
+    font-size: 2rem;
+    padding: 10px;
+}
 
+.social-list{
+    list-style: none;
+}
 
 
 
