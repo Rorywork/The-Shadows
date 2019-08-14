@@ -1,6 +1,8 @@
 {% extends 'layout.html' %}
 
 {% block body %}
+
+<main class="container" id="login-container">
   <h1>Login</h1>
   <form action="" method="POST">
     <div class="form-group">
@@ -11,6 +13,10 @@
       <label>Password</label>
       <input type="password" name="password" class="form-control" value={{request.form.password}}>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button id="loginSubmitButton" type="submit" class="btn btn-primary">Submit</button>
   </form>
+
+
+<img id="loginImage" class=" img-fluid" src="https://images.pexels.com/photos/720225/pexels-photo-720225.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Car">
+</main>
 {% endblock %}

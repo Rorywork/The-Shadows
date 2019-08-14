@@ -2,13 +2,13 @@
 
 {% block body %}
 
-<div id="upload-photo-form" class="container">
+<!-- <div id="upload-photo-form" class="container">
 <form method="POST" action="/create" enctype="multipart/form-data">
 
-    <div>
+    <div> -->
     <!-- <input placeholder="Username" type="text" name="username"> -->
-    Contributor: {{session.username}}
-    </div>
+    <!-- Contributor: {{session.username}} -->
+    <!-- </div>
 
     <div>
     <input placeholder="Image Name" type="text" name="image_name">
@@ -43,7 +43,65 @@
 
 
 </form>
-</div>
+</div> -->
+
+<main id="uploadPhotoForm" class="container">
+
+        <div class="jumbotron">
+                <h1 class="display-3">Join our community of grey.</h1>
+                <p class="lead">You can use the form below to upload your own images into the gallery. All we ask is that you keep everything greyscale!</p>
+                <hr class="my-4">
+                <p>You can get to the gallery by clicking below.</p>
+                <p class="lead">
+                  <a class="btn btn-primary btn-lg" href="/showphotos" role="button">Gallery</a>
+                </p>
+        </div>
+
+<form method="POST" action="/create" enctype="multipart/form-data">
+    <div>
+        Contributor: {{session.username}}
+    </div>
+
+      <div class="form-group">
+        <label for="formChooseFile">Choose File</label>
+        <input type="file" name="image_file" class="form-control" id="formChooseFile" placeholder="Choose File">
+      </div>
+
+
+      <div class="form-group">
+        <label for="formImageName">Name</label>
+        <input type="text" name="image_name" class="form-control" id="formImageName" placeholder="Type Image Name Here">
+      </div>
+
+      
+      <div class="form-group">
+        <label for="formImageName">Description</label>
+        <input type="text" name="image_description" class="form-control" id="formImageDescription" placeholder="Tell us something about the image!">
+      </div>
+
+      <div class="form-group">
+        <label for="formImageCategory">Category</label>
+        <select name="image_category" class="form-control" id="formImageCategory">
+            <option value="" disabled selected>Select Category</option>
+            <option>People</option>
+            <option>Animals</option>
+            <option>Natural</option>
+            <option>Urban</option>
+            <option>Food and Drinks</option>
+            <option>Objects</option>
+            <option>Abstract</option>
+            <option>Other</option>
+        </select>
+      </div>
+      <p>Remember to keep it greyscale!</p>
+      <button type="submit" class="btn btn-primary">Submit</button>
+
+</main>
+
+
+
+
+
 
 
 

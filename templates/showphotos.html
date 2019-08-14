@@ -24,7 +24,10 @@
         </div>
     </div>
 
+
+
     {{ pagination.info }}
+
 
     {% for photo in photos %}
 
@@ -40,38 +43,50 @@
                     <div class="text">
                         <p>{{photo.image_name}}</p>
                         <p>"{{photo.image_description}}"</p>
+                        
                     </div>
                     <div id="bottom-right-overlay">
-                        <p id="username-text">{{photo.username}}</p>
+                        <p id="username-text">{{photo.username}}</p><br>
+                        {% if session.username == "Rorywork" %}
+                            <a class="btn btn-secondary"  href="/editphotodetails/{{photo._id}}"><i class="material-icons"><i class="fas fa-edit"></i></a>
+                            <a class="btn btn-secondary"   href="/deletephoto/{{photo._id}}"><i class="material-icons"><i class="fas fa-trash-alt"></i></i></a>
+                        {% endif %}
                     </div>
                 </div>
 
                 
 
-                {% for comment in photo.comments %}
-                <div class="com{{photo._id}}">
-                    <p><i>{{comment}}</i></p>
-                </div>
-                {% endfor %}
-
+                
                 
             </div>
-            <p>Add a comment</p>
-            <form action="/postcomment/{{photo._id}}" method="post">
-                <input type="text" name="comment">&nbsp;<input type="submit" value="Submit">
+            
+
+            <form id="add-comment" action="/postcomment/{{photo._id}}" method="post">
+                <input type="text" name="comment">&nbsp;
+                <input class="btn btn-primary" type="submit" value="Add Comment">
+            </form>
+            <button class="btn btn-secondary" onclick="showhidecomments('com{{photo._id}}')"><i class="fas fa-comments"></i></button>
+            <!-- <button class="btn btn-secondary"><i class="far fa-thumbs-up"></i></button> -->
+            <form action="/addlike/{{photo._id}}" method="post">
+                <input class="btn btn-secondary" type="submit" value="I like it">
+                {{photo.likes}}<i class="far fa-thumbs-up"></i>
             </form>
 
+
+
+            
         </div>
+        
+        {% for comment in photo.comments %}
+        <div class="com{{photo._id}}">
+            <p><i>{{comment}}</i></p>
+        </div>
+        {% endfor %}
 
     </section>
 
-    <div class="edit-delete-buttons">
-        {% if session.username == "Rorywork" %}
-            <a href="/editphotodetails/{{photo._id}}"><i class="material-icons">edit</i></a>
-            <a href="/deletephoto/{{photo._id}}"><i class="material-icons">delete</i></a>
-        {% endif %}
-        <button onclick="showhidecomments('com{{photo._id}}')">Show/Hide Comments</button>
-    </div>
+
+
     
 
 
@@ -101,5 +116,7 @@ function ToggleVisibility(divClass)
     }
 }
 </script>
+<div class="pagination-bottom">
 {{ pagination.links }}
+</div>
 {% endblock %}

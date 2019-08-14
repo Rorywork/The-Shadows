@@ -1,4 +1,5 @@
 
+
 body{
     height: 100vh;
     width: 99vw;
@@ -97,6 +98,7 @@ label{
 
 
 #gallery-headline{
+    margin: 50px 0px 50px 0px;
     text-align: center;
 }
 
@@ -151,10 +153,6 @@ label{
       margin-right: 10%;
   }
 
-  .material-icons{
-      font-size: 4rem;
-      color: rgb(0, 0, 0);
-  }
 
 
   #bottom-right-overlay{
@@ -191,20 +189,60 @@ label{
       text-align: center;
   }
 
+
  .image-thumbnail{
     max-width: 150px;
     height: auto;
  }
 
- .pagination-page-info { padding: .6em; 
-    padding-left: 0; 
-    width: 40em; 
-    margin: .5em; 
-    margin-left: 0; 
-    font-size: 12px; } 
+ .pagination-page-info {
+    padding-top: 50px;
+    width: 25%;
+    font-size: 12px;
+    margin: 0 auto;
+
+ } 
 
  .pagination-page-info b { color: black; 
-    background: #6aa6ed; 
+    background: #b8b1b1; 
     padding-left: 2px; 
     padding: .1em .25em; 
     font-size: 150%; } 
+
+.pagination-page-links{
+    background-color: rgb(128, 37, 37);
+}
+
+.pagination-bottom{
+    padding-top: 150px;
+    width: 20%;
+    margin: 0 auto;
+}
+
+#add-comment{
+    margin-top: 10px;
+}
+
+.fa-comments{
+    font-size: 1.5rem;
+    padding-bottom: 10px;
+}
+
+.fa-thumbs-up{
+    font-size: 1.5rem;
+    padding-bottom: 10px;
+}
+
+
+#uploadPhotoForm{
+    margin-top: 100px;
+}
+
+#login-container{
+    margin-top: 100px;
+}
+
+#loginSubmitButton{
+    margin-bottom: 50px;
+}
+
