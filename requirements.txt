@@ -1,6 +1,5 @@
 astroid==2.2.5
 autopep8==1.4.4
-bson==0.5.8
 Click==7.0
 colorama==0.4.1
 dnspython==1.16.0
