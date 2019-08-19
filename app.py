@@ -92,8 +92,14 @@ def showphotos():
     page = request.args.get(get_page_parameter(), type=int, default=1)
     photos = MONGO.db.photos
     allphotos = photos.find().skip((page - 1) * per_page).sort([('_id', -1), ]).limit(per_page)
+    agr = [{'$match': {'image_category': { '$ne' : None }}},
+           {'$group': {'_id': '$image_category', 'myCount': {'$sum': 1}}},
+           {'$sort':{'myCount': -1,'_id':1}}
+            ]
+    grp = list(MONGO.db.photos.aggregate(agr))
+    tot = MONGO.db.photos.find().count()
     pagination = Pagination(page=page, per_page=5, total=allphotos.count(), search=search, record_name='photos', bs_version=bs_version, css_framework='bootstrap', show_single_page=False)
-    return render_template('showphotos.html', photos= allphotos, pagination= pagination)
+    return render_template('showphotos.html', photos= allphotos, grp = grp, total = tot, pagination= pagination)
 
 
 @APP.route('/showphotosbycategory/<category>')
@@ -102,9 +108,15 @@ def showphotosbycategory(category):
     page = request.args.get(get_page_parameter(), type=int, default=1)
     photos = MONGO.db.photos
     catphotos = photos.find({"image_category": category}).skip((page - 1) * per_page).sort([('_id', -1), ]).limit(per_page)
+    agr = [{'$match': {'image_category': { '$ne' : None }}},
+           {'$group': {'_id': '$image_category', 'myCount': {'$sum': 1}}},
+           {'$sort':{'myCount': -1,'_id':1}}
+            ]
+    grp = list(MONGO.db.photos.aggregate(agr))
+    tot = MONGO.db.photos.find().count()
     pagination = Pagination(page=page, per_page=5, total=catphotos.count(), search=search, record_name='photos', bs_version=bs_version, css_framework='bootstrap', show_single_page=False)
     flash("Showing photographs for the category: {}".format(category))
-    return render_template('showphotos.html', photos= catphotos, pagination= pagination)
+    return render_template('showphotos.html', photos= catphotos, grp = grp, total = tot, pagination= pagination)
 
 
 @APP.route('/deletephoto/<photoid>')
