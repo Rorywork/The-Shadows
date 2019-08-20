@@ -3,9 +3,16 @@
 {% block body %}
 
 
-    <h1>Register</h1>
+
+
+
+<main class="container" id="registerForm">
+
+    <div class="row">
+        <div class="col-8">
+    <h1 class="register-form">Register</h1>
     {% from "includes/_formhelpers.html" import render_field %}
-    <form class="form-group" method="POST" action="">
+    <form method="POST" action="" class="register-form">
 
         <div>
             {{render_field(form.name)}}
@@ -23,12 +30,18 @@
             {{render_field(form.confirm)}}
         </div>
 
-        <p><input type="submit" class="btn" value="Submit"></p>
+        <!-- <p><input type="submit" class="btn" value="Submit"></p> -->
+        <button id="loginSubmitButton" type="submit" class="btn btn-primary" value="Submit">Submit</button>
 
 
     </form>
+    </div>
+</div>
 
 
+    <img id="loginImage" class=" img-fluid" src="https://images.pexels.com/photos/276374/pexels-photo-276374.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" alt="Car">
+
+</main>
 
 
 
