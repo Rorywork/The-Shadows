@@ -66,7 +66,7 @@ def create():
                                 search=SEARCH, record_name='photos', bs_version=BS_VERSION,
                                 css_framework='bootstrap', show_single_page=False)
         flash("The photo was uploaded to the site.", 'success')
-    return render_template('showphotos.html', photos=allphotos, pagination=pagination)
+    return redirect("/showphotos")
 
 
 @APP.route('/file/<filename>')
