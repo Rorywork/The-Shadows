@@ -1,3 +1,4 @@
+'''This is the controlling program for The Shadows website'''
 import os
 from functools import wraps
 from flask import Flask, flash, render_template, redirect, request, url_for, session, logging
@@ -17,9 +18,9 @@ APP.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 MONGO = PyMongo(APP)
 
 # Pagination defaults
-search = False
-per_page = 5
-bs_version = 4
+SEARCH = False
+PER_PAGE = 5
+BS_VERSION = 4
 
 
 def is_logged_in(f):
@@ -42,11 +43,13 @@ def index():
 @APP.route('/upload')
 @is_logged_in
 def upload():
+    """This will render the upload photo page when user is logged in"""
     return render_template('upload-photo.html')
 
 
 @APP.route('/create', methods=['POST'])
 def create():
+    """This will save the uploaded photo and associated attributes to the MongoDB"""
     if 'image_file' in request.files:
         image_file = request.files['image_file']
         MONGO.save_file(image_file.filename, image_file)
@@ -54,94 +57,114 @@ def create():
             'image_name'), 'image_description': request.form.get('image_description'), 'image_category': request.form.get('image_category'), 'image_rotation': request.form.get('image_rotation')})
         page = request.args.get(get_page_parameter(), type=int, default=1)
         photos = MONGO.db.photos
-        allphotos = photos.find().skip((page - 1) * per_page).sort([('_id', -1), ]).limit(per_page)
-        pagination = Pagination(page=page, per_page=5, total=allphotos.count(), search=search, record_name='photos', bs_version=bs_version, css_framework='bootstrap', show_single_page=False)
+        allphotos = photos.find().skip(
+            (page - 1) * PER_PAGE).sort([('_id', -1), ]).limit(PER_PAGE)
+        pagination = Pagination(page=page, per_page=5, total=allphotos.count(
+        ), search=SEARCH, record_name='photos', bs_version=BS_VERSION, css_framework='bootstrap', show_single_page=False)
         flash("The photo was uploaded to the site.", 'success')
-    return render_template('showphotos.html', photos= allphotos, pagination= pagination)
+    return render_template('showphotos.html', photos=allphotos, pagination=pagination)
 
 
 @APP.route('/file/<filename>')
 def file(filename):
+    """This is used to save the image onto the MongoDB"""
     return MONGO.send_file(filename)
 
 
-@APP.route('/photo/<image_name>')
-def getImage(image_name):
-    print(image_name)
-    photo = MONGO.db.photos.find_one_or_404({'image_name': image_name})
-    print(photo)
-    return f'''
+# @APP.route('/photo/<image_name>')
+# def getImage(image_name):
+#     print(image_name)
+#     photo = MONGO.db.photos.find_one_or_404({'image_name': image_name})
+#     print(photo)
+#     return f'''
         
-        <img src="{url_for('file', filename=photo['image_file'])}">
+#         <img src="{url_for('file', filename=photo['image_file'])}">
         
-    '''
+#     '''
 
 
 @APP.route('/showphoto/<photoid>')
 def showphoto(photoid):
+    """This is used to show an individual photo based upon it's unique ID number"""
      # Show individual photo
     page = request.args.get(get_page_parameter(), type=int, default=1)
     photos = MONGO.db.photos
-    onephoto = photos.find({"_id": ObjectId(photoid)}).skip((page - 1) * per_page).sort([('_id', -1), ]).limit(per_page)
-    pagination = Pagination(page=page, per_page=5, total=onephoto.count(), search=search, record_name='photos', bs_version=bs_version, css_framework='bootstrap', show_single_page=False)
-    return render_template('showphotos.html', photos= onephoto, pagination= pagination)
+    onephoto = photos.find({"_id": ObjectId(photoid)}).skip(
+        (page - 1) * PER_PAGE).sort([('_id', -1), ]).limit(PER_PAGE)
+    pagination = Pagination(page=page, per_page=5, total=onephoto.count(),
+                            search=SEARCH, record_name='photos', bs_version=BS_VERSION,
+                            css_framework='bootstrap', show_single_page=False)
+    return render_template('showphotos.html', photos=onephoto, pagination=pagination)
+
 
 @APP.route('/showphotos')
 def showphotos():
-    # Show all photo sorted by creation date - from the _id
+    """Used to show all photos and also group and count the photos categories for use in buttons."""
     page = request.args.get(get_page_parameter(), type=int, default=1)
     photos = MONGO.db.photos
-    allphotos = photos.find().skip((page - 1) * per_page).sort([('_id', -1), ]).limit(per_page)
-    agr = [{'$match': {'image_category': { '$ne' : None }}},
+    allphotos = photos.find().skip(
+        (page - 1) * PER_PAGE).sort([('_id', -1), ]).limit(PER_PAGE)
+    agr = [{'$match': {'image_category': {'$ne': None}}},
            {'$group': {'_id': '$image_category', 'myCount': {'$sum': 1}}},
-           {'$sort':{'myCount': -1,'_id':1}}
-            ]
+           {'$sort': {'myCount': -1, '_id': 1}}
+           ]
     grp = list(MONGO.db.photos.aggregate(agr))
     tot = MONGO.db.photos.find().count()
-    pagination = Pagination(page=page, per_page=5, total=allphotos.count(), search=search, record_name='photos', bs_version=bs_version, css_framework='bootstrap', show_single_page=False)
-    return render_template('showphotos.html', photos= allphotos, grp = grp, total = tot, pagination= pagination)
+    pagination = Pagination(page=page, per_page=5, total=allphotos.count(),
+                            search=SEARCH, record_name='photos', bs_version=BS_VERSION,
+                            css_framework='bootstrap', show_single_page=False)
+    return render_template('showphotos.html', photos=allphotos, grp=grp,
+                           total=tot, pagination=pagination)
 
 
 @APP.route('/showphotosbycategory/<category>')
 def showphotosbycategory(category):
-    # Show photos filtered by category and sorted by creation date 
+    """Shows photos by category"""
+    # Show photos filtered by category and sorted by creation date
     page = request.args.get(get_page_parameter(), type=int, default=1)
     photos = MONGO.db.photos
-    catphotos = photos.find({"image_category": category}).skip((page - 1) * per_page).sort([('_id', -1), ]).limit(per_page)
-    agr = [{'$match': {'image_category': { '$ne' : None }}},
+    catphotos = photos.find({"image_category": category}).skip(
+        (page - 1) * PER_PAGE).sort([('_id', -1), ]).limit(PER_PAGE)
+    agr = [{'$match': {'image_category': {'$ne': None}}},
            {'$group': {'_id': '$image_category', 'myCount': {'$sum': 1}}},
-           {'$sort':{'myCount': -1,'_id':1}}
-            ]
+           {'$sort': {'myCount': -1, '_id': 1}}
+           ]
     grp = list(MONGO.db.photos.aggregate(agr))
     tot = MONGO.db.photos.find().count()
-    pagination = Pagination(page=page, per_page=5, total=catphotos.count(), search=search, record_name='photos', bs_version=bs_version, css_framework='bootstrap', show_single_page=False)
-    return render_template('showphotos.html', photos= catphotos, grp = grp, total = tot, pagination= pagination)
+    pagination = Pagination(page=page, per_page=5, total=catphotos.count(
+    ), search=SEARCH, record_name='photos', bs_version=BS_VERSION, css_framework='bootstrap', show_single_page=False)
+    return render_template('showphotos.html', photos=catphotos, grp=grp, total=tot, pagination=pagination)
 
 
 @APP.route('/deletephoto/<photoid>')
 def deletephoto(photoid):
+    """Used to delete photos when you are logged in as the superuser"""
     photo2delete = MONGO.db.photos.find_one_or_404({"_id": ObjectId(photoid)})
     MONGO.db.photos.delete_one({"_id": ObjectId(photoid)})
     page = request.args.get(get_page_parameter(), type=int, default=1)
     photos = MONGO.db.photos
-    allphotos = photos.find().skip((page - 1) * per_page).sort([('_id', -1), ]).limit(per_page)
-    pagination = Pagination(page=page, per_page=5, total=allphotos.count(), search=search, record_name='photos', bs_version=bs_version, css_framework='bootstrap', show_single_page=False)
+    allphotos = photos.find().skip(
+        (page - 1) * PER_PAGE).sort([('_id', -1), ]).limit(PER_PAGE)
+    pagination = Pagination(page=page, per_page=5, total=allphotos.count(
+    ), search=SEARCH, record_name='photos', bs_version=BS_VERSION, css_framework='bootstrap', show_single_page=False)
     flash("The photograph {} has been deleted.".format(
         photo2delete['image_name']), 'success')
-    return render_template('showphotos.html', photos= allphotos, pagination= pagination)
+    return render_template('showphotos.html', photos=allphotos, pagination=pagination)
 
 
 class PhotoForm(Form):
+    """Defines the form for editing photo details"""
     username = StringField('User Name', [validators.Length(min=1, max=50)])
     image_name = StringField('Image Name', [validators.Length(min=1, max=200)])
     image_description = StringField(
         'Image Description', [validators.Length(min=1, max=200)])
     image_file = StringField('Image File', [validators.Length(min=1, max=500)])
-    #image_category = SelectField('Image Category',choices=['People','Animals','Natural', 'Urban'])
+
 
 
 @APP.route('/editphotodetails/<photoid>', methods=['GET', 'POST'])
 def editphotodetails(photoid):
+    """Used for editing photographs when logged in as superuser"""
     # Get photo to edit
     photo2edit = MONGO.db.photos.find_one_or_404({"_id": ObjectId(photoid)})
     # Get form to edit
@@ -161,32 +184,42 @@ def editphotodetails(photoid):
         image_category = request.form['image_category']
         # Update the record
         MONGO.db.photos.update_one({"_id": ObjectId(photoid)}, {
-            '$set': {'username': username, 'image_name': image_name, 'image_description': image_description, "image_category": image_category }})
+            '$set': {'username': username, 'image_name': image_name,
+                     'image_description': image_description, "image_category": image_category}})
 
         flash('Photo {} has been updated.'.format(image_name), 'success')
         page = request.args.get(get_page_parameter(), type=int, default=1)
         photos = MONGO.db.photos
-        allphotos = photos.find().skip((page - 1) * per_page).sort([('_id', -1), ]).limit(per_page)
-        pagination = Pagination(page=page, per_page=5, total=allphotos.count(), search=search, record_name='photos', bs_version=bs_version, css_framework='bootstrap', show_single_page=False)
-        return render_template('showphotos.html', photos= allphotos, pagination= pagination)
+        allphotos = photos.find().skip(
+            (page - 1) * PER_PAGE).sort([('_id', -1), ]).limit(PER_PAGE)
+        pagination = Pagination(page=page, per_page=5, total=allphotos.count(),
+                                search=SEARCH, record_name='photos', bs_version=BS_VERSION,
+                                css_framework='bootstrap', show_single_page=False)
+        return render_template('showphotos.html', photos=allphotos, pagination=pagination)
 
     return render_template('edit-photo.html', form=form)
 
+
 @APP.route('/postcomment/<photoid>', methods=['POST'])
 def postcomment(photoid):
-    #print(photoid)
-    #print(request.form.get('comment'))
-    MONGO.db.photos.update_one({'_id': ObjectId(photoid)}, {'$push': {'comments': request.form.get('comment')}}, upsert=True)
+    """Used to post comments"""
+    MONGO.db.photos.update_one({'_id': ObjectId(photoid)}, {
+                               '$push': {'comments': request.form.get('comment')}}, upsert=True)
     flash("Your comment has been added to the photo.", 'success')
     return redirect(url_for('showphoto', photoid=photoid))
 
+
 @APP.route('/addlike/<photoid>', methods=['POST'])
 def addlike(photoid):
-    MONGO.db.photos.update_one({'_id': ObjectId(photoid)}, {'$inc': {'likes': 1}}, upsert=True)
+    """Used to add likes to photos"""
+    MONGO.db.photos.update_one({'_id': ObjectId(photoid)}, {
+                               '$inc': {'likes': 1}}, upsert=True)
     flash("Your 'like' has been added to the photo.", 'success')
     return redirect(url_for('showphoto', photoid=photoid))
 
+
 class RegisterForm(Form):
+    """Form definition for registration"""
     name = StringField('Name', [validators.Length(min=1, max=50)])
     username = StringField('Username', [validators.Length(min=4, max=25)])
     email = StringField('Email', [validators.Length(min=6, max=50)])
@@ -199,6 +232,7 @@ class RegisterForm(Form):
 
 @APP.route('/register', methods=['GET', 'POST'])
 def register():
+    """Used to register a new user and to sign into the site"""
     form = RegisterForm(request.form)
     if request.method == 'POST' and form.validate():
         name = form.name.data
@@ -218,6 +252,7 @@ def register():
 
 @APP.route('/login', methods=['GET', 'POST'])
 def login():
+    """Used to login to the site"""
     if request.method == 'POST':
         username = request.form['username']
         password_candidate = request.form['password']
@@ -249,17 +284,11 @@ def login():
 
 @APP.route('/logout')
 def logout():
+    """Used to logout of the site"""
     session.clear()
     flash('You are now logged out', 'success')
     return redirect(url_for('login'))
 
-
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# if __name__ == '__main__':
-#     app.run(debug=True)
-
-# The above is required for local development but
-# needs to be commented out to run in Heroku and replaced with the below code
 
 if __name__ == '__main__':
     APP.run(debug=os.environ.get('DEBUG'), host=os.environ.get(

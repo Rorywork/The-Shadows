@@ -260,3 +260,9 @@ label{
 .register-form{
     text-align: right;
 }
+
+.success{
+    list-style: none;
+    color: red;
+    background-color: grey;
+}
