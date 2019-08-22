@@ -29,7 +29,6 @@ def is_logged_in(f):
         if 'logged_in' in session:
             return f(*args, **kwargs)
         else:
-            flash('Unauthorized, Please login', 'danger')
             return redirect(url_for('login'))
     return wrap
 
@@ -53,15 +52,20 @@ def create():
     if 'image_file' in request.files:
         image_file = request.files['image_file']
         MONGO.save_file(image_file.filename, image_file)
-        MONGO.db.photos.insert({'username': session['username'], 'image_file': image_file.filename, 'image_name': request.form.get(
-            'image_name'), 'image_description': request.form.get('image_description'), 'image_category': request.form.get('image_category'), 'image_rotation': request.form.get('image_rotation')})
+        MONGO.db.photos.insert({'username': session['username'],
+                                'image_file': image_file.filename,
+                                'image_name': request.form.get('image_name'),
+                                'image_description': request.form.get('image_description'),
+                                'image_category': request.form.get('image_category'),
+                                'image_rotation': request.form.get('image_rotation')})
         page = request.args.get(get_page_parameter(), type=int, default=1)
         photos = MONGO.db.photos
         allphotos = photos.find().skip(
             (page - 1) * PER_PAGE).sort([('_id', -1), ]).limit(PER_PAGE)
-        pagination = Pagination(page=page, per_page=5, total=allphotos.count(
-        ), search=SEARCH, record_name='photos', bs_version=BS_VERSION, css_framework='bootstrap', show_single_page=False)
-        flash("The photo was uploaded to the site.", 'success')
+        pagination = Pagination(page=page, per_page=5, total=allphotos.count(),
+                                search=SEARCH, record_name='photos', bs_version=BS_VERSION,
+                                css_framework='bootstrap', show_single_page=False)
+
     return render_template('showphotos.html', photos=allphotos, pagination=pagination)
 
 
@@ -69,18 +73,6 @@ def create():
 def file(filename):
     """This is used to save the image onto the MongoDB"""
     return MONGO.send_file(filename)
-
-
-# @APP.route('/photo/<image_name>')
-# def getImage(image_name):
-#     print(image_name)
-#     photo = MONGO.db.photos.find_one_or_404({'image_name': image_name})
-#     print(photo)
-#     return f'''
-        
-#         <img src="{url_for('file', filename=photo['image_file'])}">
-        
-#     '''
 
 
 @APP.route('/showphoto/<photoid>')
@@ -165,24 +157,18 @@ class PhotoForm(Form):
 @APP.route('/editphotodetails/<photoid>', methods=['GET', 'POST'])
 def editphotodetails(photoid):
     """Used for editing photographs when logged in as superuser"""
-    # Get photo to edit
     photo2edit = MONGO.db.photos.find_one_or_404({"_id": ObjectId(photoid)})
-    # Get form to edit
     form = PhotoForm(request.form)
-    # Pre-populate form with values
     print(photo2edit['username'])
     form.username.data = photo2edit['username']
     form.image_name.data = photo2edit['image_name']
     form.image_description.data = photo2edit['image_description']
     form.image_file.data = photo2edit['image_file']
-    #form.image_category.data = photo2edit['image_category']
     if request.method == 'POST' and form.validate():
         username = request.form['username']
         image_name = request.form['image_name']
         image_description = request.form['image_description']
-        # image_file = request.form['image_file'] ..... cannot capture this due to HTML security
         image_category = request.form['image_category']
-        # Update the record
         MONGO.db.photos.update_one({"_id": ObjectId(photoid)}, {
             '$set': {'username': username, 'image_name': image_name,
                      'image_description': image_description, "image_category": image_category}})
@@ -203,8 +189,8 @@ def editphotodetails(photoid):
 @APP.route('/postcomment/<photoid>', methods=['POST'])
 def postcomment(photoid):
     """Used to post comments"""
-    MONGO.db.photos.update_one({'_id': ObjectId(photoid)}, {
-                               '$push': {'comments': request.form.get('comment')}}, upsert=True)
+    MONGO.db.photos.update_one({'_id': ObjectId(photoid)},
+                               {'$push': {'comments': request.form.get('comment')}}, upsert=True)
     flash("Your comment has been added to the photo.", 'success')
     return redirect(url_for('showphoto', photoid=photoid))
 
@@ -212,8 +198,8 @@ def postcomment(photoid):
 @APP.route('/addlike/<photoid>', methods=['POST'])
 def addlike(photoid):
     """Used to add likes to photos"""
-    MONGO.db.photos.update_one({'_id': ObjectId(photoid)}, {
-                               '$inc': {'likes': 1}}, upsert=True)
+    MONGO.db.photos.update_one({'_id': ObjectId(photoid)},
+                               {'$inc': {'likes': 1}}, upsert=True)
     flash("Your 'like' has been added to the photo.", 'success')
     return redirect(url_for('showphoto', photoid=photoid))
 
@@ -268,7 +254,6 @@ def login():
                 session['logged_in'] = True
                 session['username'] = username
 
-                flash('You are now logged in', 'success')
                 return redirect(url_for('showphotos'))
             else:
                 error = 'Invalid Login'
@@ -286,7 +271,6 @@ def login():
 def logout():
     """Used to logout of the site"""
     session.clear()
-    flash('You are now logged out', 'success')
     return redirect(url_for('login'))
 
 
