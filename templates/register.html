@@ -10,36 +10,38 @@
 
     <div class="row">
         <div class="col-8">
-    <h1 class="register-form">Register</h1>
-    {% from "includes/_formhelpers.html" import render_field %}
-    <form method="POST" action="" class="register-form">
+            <h1 class="register-form">Register</h1>
+            {% from "includes/_formhelpers.html" import render_field %}
+            <form method="POST" action="" class="register-form">
 
-        <div>
-            {{render_field(form.name)}}
-        </div>
-        <div>
-            {{render_field(form.email)}}
-        </div>
-        <div>
-            {{render_field(form.username)}}
-        </div>
-        <div>
-            {{render_field(form.password)}}
-        </div>
-        <div>
-            {{render_field(form.confirm)}}
-        </div>
-
-        <!-- <p><input type="submit" class="btn" value="Submit"></p> -->
-        <button id="loginSubmitButton" type="submit" class="btn btn-primary" value="Submit">Submit</button>
+                <div>
+                    {{render_field(form.name)}}
+                </div>
+                <div>
+                    {{render_field(form.email)}}
+                </div>
+                <div>
+                    {{render_field(form.username)}}
+                </div>
+                <div>
+                    {{render_field(form.password)}}
+                </div>
+                <div>
+                    {{render_field(form.confirm)}}
+                </div>
 
 
-    </form>
+                <button id="loginSubmitButton" type="submit" class="btn btn-primary" value="Submit">Submit</button>
+
+
+            </form>
+        </div>
     </div>
-</div>
 
 
-    <img id="loginImage" class=" img-fluid" src="https://images.pexels.com/photos/276374/pexels-photo-276374.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" alt="Car">
+    <img id="loginImage" class=" img-fluid"
+        src="https://images.pexels.com/photos/276374/pexels-photo-276374.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
+        alt="Car">
 
 </main>
 

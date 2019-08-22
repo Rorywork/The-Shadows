@@ -1,93 +1,87 @@
-
-
-body{
+/* Layout Styles */
+body {
     height: 100vh;
     width: 99vw;
     font-size: 16px;
 }
 
 
-#brand{
-    color: rgb(0, 0, 0);
-    font-size: 2rem;
-
-}
-
-footer{
+footer {
     border: silver 1px solid;
     margin-top: 100px;
     padding-top: 50px;
 }
 
-.navbar-brand{
+.navbar-brand {
     font-size: 2.5rem;
 }
 
+.social-list {
+    list-style: none;
+}
 
-
-.fab{
+.fab {
     color: rgb(116, 116, 116);
     font-size: 2rem;
     padding: 10px;
 }
 
-.fab:hover{
+.fab:hover {
     color: rgb(0, 0, 0);
     font-size: 2rem;
     padding: 10px;
 }
 
-.social-list{
-    list-style: none;
-}
-
-
+/* Home Page
+The Parallax is used to create the scrolling effect on the home page */
 
 .parallax {
-	height: 100vh;
-	background-attachment: fixed;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
+    height: 100vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #parallax-1 {
-	background-image: url("https://images.pexels.com/photos/1203819/pexels-photo-1203819.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    background-image: url("https://images.pexels.com/photos/1203819/pexels-photo-1203819.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
 }
 
 #parallax-2 {
-	background-image: url("https://images.pexels.com/photos/959314/pexels-photo-959314.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    background-image: url("https://images.pexels.com/photos/959314/pexels-photo-959314.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
 }
-#img-overlay{
+
+/* The overlay is what shows the text sitting over the parallax */
+
+#img-overlay {
     font-size: 50px;
     text-align: center;
     color: rgb(255, 255, 255);
     padding-top: 800px;
 }
-.highlight{
-    color: black;
+
+.highlight {
+    color: rgb(0, 0, 0);
     background-color: rgba(114, 114, 122, 0.664);
 }
 
-#index-info-section{
+#index-info-section {
     height: 200px;
     background-color: white;
     padding: 100px 0px 270px 0px;
 }
 
-.descriptive-text{
+.descriptive-text {
     font-size: 20px;
     text-align: center;
     color: black;
 }
 
-
-
-#upload-photo-form{
+#upload-photo-form {
     margin-top: 10%;
 }
 
-label{
+label {
     padding: 30px;
 }
 
@@ -95,9 +89,7 @@ label{
 
 /* Gallery */
 
-
-
-#gallery-headline{
+#gallery-headline {
     margin: 50px 0px 50px 0px;
     text-align: center;
 }
@@ -107,15 +99,15 @@ label{
     position: relative;
     width: 75%;
     margin-top: 100px;
-  }
-  
-  .image {
+}
+
+.image {
     display: block;
     width: 100%;
     height: auto;
-  }
-  
-  .overlay {
+}
+
+.overlay {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -127,13 +119,13 @@ label{
     -webkit-transition: .5s ease;
     transition: .5s ease;
     background-color: rgba(0, 0, 0, 0.8);
-  }
-  
-  .container-overlay:hover .overlay {
+}
+
+.container-overlay:hover .overlay {
     opacity: 1;
-  }
-  
-  .text {
+}
+
+.text {
     color: white;
     font-size: 20px;
     position: absolute;
@@ -142,126 +134,126 @@ label{
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     text-align: center;
-  }
+}
 
-  #username-text{
+#username-text {
     position: absolute;
-  }
+}
 
-  .edit-delete-buttons{
-      float: right;
-      margin-right: 10%;
-  }
+.edit-delete-buttons {
+    float: right;
+    margin-right: 10%;
+}
 
-
-
-  #bottom-right-overlay{
+#bottom-right-overlay {
     color: white;
     font-size: 16px;
     position: absolute;
     bottom: 50px;
     right: 20%;
-  }
+}
 
-  .film{
-      background-image: url("https://i.pinimg.com/originals/52/72/c6/5272c64129306d28199a57f28ae2dada.png");
-      background-position: center;
-      background-size: cover;
-      color: rgb(0, 0, 0);
-      height: 100px;
-      width: 100px;
-      text-align: center;
-      border: 2px solid rgb(0, 0, 0);
+.film {
+    background-image: url("https://i.pinimg.com/originals/52/72/c6/5272c64129306d28199a57f28ae2dada.png");
+    background-position: center;
+    background-size: cover;
+    color: rgb(0, 0, 0);
+    height: 100px;
+    width: 100px;
+    text-align: center;
+    border: 2px solid rgb(0, 0, 0);
 
-  }
+}
 
-  .film:hover{
+.film:hover {
     color: rgb(204, 167, 47);
     border: 2px solid rgb(204, 167, 47);
     font-weight: bolder;
-  }
+}
 
-  .film-reel{
-      display: inline-block;
-  }
+.film-reel {
+    display: inline-block;
+}
 
-  .parent{
-      text-align: center;
-  }
+.parent {
+    text-align: center;
+}
 
 
- .image-thumbnail{
+.image-thumbnail {
     max-width: 150px;
     height: auto;
- }
+}
 
- .pagination-page-info {
+.pagination-page-info {
     padding-top: 50px;
     width: 25%;
     font-size: 12px;
     margin: 0 auto;
 
- } 
+}
 
- .pagination-page-info b { color: black; 
-    background: #b8b1b1; 
-    padding-left: 2px; 
-    padding: .1em .25em; 
-    font-size: 150%; } 
+.pagination-page-info b {
+    color: black;
+    background: #b8b1b1;
+    padding-left: 2px;
+    padding: .1em .25em;
+    font-size: 150%;
+}
 
-.pagination-page-links{
+.pagination-page-links {
     background-color: rgb(128, 37, 37);
 }
 
-.pagination-bottom{
+.pagination-bottom {
     padding-top: 150px;
     width: 20%;
     margin: 0 auto;
 }
 
- .pagination-center{
-    padding-top: 5px; 
+.pagination-center {
+    padding-top: 5px;
     width: 20%;
     margin: 0 auto;
-} 
+}
 
-#add-comment{
+#add-comment {
     margin-top: 10px;
 }
 
-.fa-comments{
+.fa-comments {
     font-size: 1.5rem;
     padding-bottom: 10px;
 }
 
-.fa-thumbs-up{
+.fa-thumbs-up {
     font-size: 1.5rem;
     padding-bottom: 10px;
 }
 
 
-#uploadPhotoForm{
+#uploadPhotoForm {
     margin-top: 100px;
 }
 
-#login-container{
+#login-container {
     margin-top: 100px;
 }
 
-#loginSubmitButton{
+#loginSubmitButton {
     margin-bottom: 50px;
 }
 
 
-#registerForm{
+#registerForm {
     margin-top: 50px;
 }
 
-.register-form{
+.register-form {
     text-align: right;
 }
 
-.success{
+.success {
     list-style: none;
     color: red;
     background-color: grey;

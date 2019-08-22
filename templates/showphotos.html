@@ -11,7 +11,8 @@
         <div class="film-reel">
             <button onclick="window.location.href = '/showphotos';" class="film">All({{total}})</button>
             {% for bCat in grp %}
-                <button onclick="window.location.href = '/showphotosbycategory/{{bCat._id}}';" class="film">{{bCat._id}}({{bCat.myCount}})</button>
+            <button onclick="window.location.href = '/showphotosbycategory/{{bCat._id}}';"
+                class="film">{{bCat._id}}({{bCat.myCount}})</button>
             {% endfor %}
 
         </div>
@@ -36,29 +37,32 @@
                     <div class="text">
                         <p>{{photo.image_name}}</p>
                         <p>"{{photo.image_description}}"</p>
-                        
+
                     </div>
                     <div id="bottom-right-overlay">
                         <p id="username-text">{{photo.username}}</p><br>
                         {% if session.username == "Rorywork" %}
-                            <a class="btn btn-secondary"  href="/editphotodetails/{{photo._id}}"><i class="material-icons"><i class="fas fa-edit"></i></a>
-                            <a class="btn btn-secondary"   href="/deletephoto/{{photo._id}}"><i class="material-icons"><i class="fas fa-trash-alt"></i></i></a>
+                        <a class="btn btn-secondary" href="/editphotodetails/{{photo._id}}"><i class="material-icons"><i
+                                    class="fas fa-edit"></i></a>
+                        <a class="btn btn-secondary" href="/deletephoto/{{photo._id}}"><i class="material-icons"><i
+                                    class="fas fa-trash-alt"></i></i></a>
                         {% endif %}
                     </div>
                 </div>
 
-                
 
-                
-                
+
+
+
             </div>
-            
+
 
             <form id="add-comment" action="/postcomment/{{photo._id}}" method="post">
                 <input type="text" name="comment">&nbsp;
                 <input class="btn btn-primary" type="submit" value="Add Comment">
             </form>
-            <button class="btn btn-secondary" onclick="showhidecomments('com{{photo._id}}')"><i class="fas fa-comments"></i></button>
+            <button class="btn btn-secondary" onclick="showhidecomments('com{{photo._id}}')"><i
+                    class="fas fa-comments"></i></button>
             <form action="/addlike/{{photo._id}}" method="post">
                 <input class="btn btn-secondary" type="submit" value="I like it">
                 {{photo.likes}}<i class="far fa-thumbs-up"></i>
@@ -66,9 +70,9 @@
 
 
 
-            
+
         </div>
-        
+
         {% for comment in photo.comments %}
         <div class="com{{photo._id}}">
             <p><i>{{comment}}</i></p>
@@ -79,7 +83,7 @@
 
 
 
-    
+
 
 
     {% endfor %}
@@ -87,28 +91,26 @@
 </main>
 
 <script>
-function showhidecomments(divClass) {
-    var x = document.getElementsByClassName(divClass);
-    for(var i = 0; i < x.length; i++)
-    {
-    if (x[i].style.display === "none") {
-      x[i].style.display = "block";
-    } else {
-      x[i].style.display = "none";
+    function showhidecomments(divClass) {
+        var x = document.getElementsByClassName(divClass);
+        for (var i = 0; i < x.length; i++) {
+            if (x[i].style.display === "none") {
+                x[i].style.display = "block";
+            } else {
+                x[i].style.display = "none";
+            }
+        }
+        console.log("xxx");
     }
+
+    function ToggleVisibility(divClass) {
+        var els = document.getElementsByClassName(divClass);
+        for (var i = 0; i < els.length; i++) {
+            els[i].style.visibility = els[i].style.visibility == "hidden" ? "visible" : "hidden";
+        }
     }
-    console.log("xxx");
-  }
-function ToggleVisibility(divClass)
-{
-    var els = document.getElementsByClassName(divClass);
-    for(var i = 0; i < els.length; i++)
-    {
-        els[i].style.visibility = els[i].style.visibility == "hidden" ? "visible" : "hidden";
-    }
-}
 </script>
 <div class="pagination-bottom">
-{{ pagination.links }}
+    {{ pagination.links }}
 </div>
 {% endblock %}

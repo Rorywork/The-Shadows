@@ -3,20 +3,14 @@
 {% block body %}
 
 
-        <h3>Photos</h3>
+<h3>Photos</h3>
 
-        {% for photo in photos %}
-        <p>{{photo.username}}</p>
-        <p>{{photo.image_file}}</p>
-        <p>{{photo.image_name}}</p>
-        <p>{{photo.image_description}}</p>
-        <img src={{url_for('file', filename=photo['image_file'])}}>
-        {% endfor %}
+{% for photo in photos %}
+<p>{{photo.username}}</p>
+<p>{{photo.image_file}}</p>
+<p>{{photo.image_name}}</p>
+<p>{{photo.image_description}}</p>
+<img src={{url_for('file', filename=photo['image_file'])}}>
+{% endfor %}
 
 {% endblock %}
-
-
-
-
-
-
