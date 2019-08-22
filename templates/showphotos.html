@@ -9,17 +9,6 @@
 
     <div class="parent">
         <div class="film-reel">
-
-            <!-- <button onclick="window.location.href = '/showphotos';" class="film">All</button>
-            <button onclick="window.location.href = '/showphotosbycategory/People';" class="film">People</button>
-            <button onclick="window.location.href = '/showphotosbycategory/Animals';" class="film">Animals</button>
-            <button onclick="window.location.href = '/showphotosbycategory/Natural';" class="film">Natural</button>
-            <button onclick="window.location.href = '/showphotosbycategory/Urban';" class="film">Urban</button>
-            <button onclick="window.location.href = '/showphotosbycategory/Food';" class="film">Food/Drink</button>
-            <button onclick="window.location.href = '/showphotosbycategory/Objects';" class="film">Objects</button>
-            <button onclick="window.location.href = '/showphotosbycategory/Abstract';" class="film">Abstract</button>
-            <button onclick="window.location.href = '/showphotosbycategory/Other';" class="film">Other</button> -->
-
             <button onclick="window.location.href = '/showphotos';" class="film">All({{total}})</button>
             {% for bCat in grp %}
                 <button onclick="window.location.href = '/showphotosbycategory/{{bCat._id}}';" class="film">{{bCat._id}}({{bCat.myCount}})</button>
@@ -70,7 +59,6 @@
                 <input class="btn btn-primary" type="submit" value="Add Comment">
             </form>
             <button class="btn btn-secondary" onclick="showhidecomments('com{{photo._id}}')"><i class="fas fa-comments"></i></button>
-            <!-- <button class="btn btn-secondary"><i class="far fa-thumbs-up"></i></button> -->
             <form action="/addlike/{{photo._id}}" method="post">
                 <input class="btn btn-secondary" type="submit" value="I like it">
                 {{photo.likes}}<i class="far fa-thumbs-up"></i>
