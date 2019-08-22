@@ -239,7 +239,7 @@ def register():
 @APP.route('/login', methods=['GET', 'POST'])
 def login():
     """Used to login to the site"""
-    if request.method == 'POST':
+    if request.method == 'POST' and "loginForm" in request.form:
         username = request.form['username']
         password_candidate = request.form['password']
 
@@ -264,6 +264,11 @@ def login():
 
             error = 'Username not found'
             return render_template('login.html', error=error)
+
+    if request.method == 'POST' and "commentForm" in request.form:
+        flash('You must login to add a comment', 'error')
+    if request.method == 'POST' and "likeForm" in request.form:
+        flash("You must login to 'like' a photo", 'error')
 
     return render_template('login.html')
 

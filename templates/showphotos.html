@@ -56,18 +56,31 @@
 
             </div>
 
-
-            <form id="add-comment" action="/postcomment/{{photo._id}}" method="post">
+            <form id="add-comment" action=
+            {% if session.logged_in %}
+                "/postcomment/{{photo._id}}"
+            {% else %}
+                "/login"
+            {% endif %}
+             method="post" name="commentForm">
                 <input type="text" name="comment">&nbsp;
-                <input class="btn btn-primary" type="submit" value="Add Comment">
+                <input class="btn btn-primary" type="submit" value="Add Comment" name="commentForm">
             </form>
+
             <button class="btn btn-secondary" onclick="showhidecomments('com{{photo._id}}')"><i
                     class="fas fa-comments"></i></button>
-            <form action="/addlike/{{photo._id}}" method="post">
-                <input class="btn btn-secondary" type="submit" value="I like it">
+
+            <form action=
+            {% if session.logged_in %}
+                "/addlike/{{photo._id}}"
+            {% else %}
+                "/login"
+            {% endif %}        
+             method="post">
+                <input class="btn btn-secondary" type="submit" value="I like it" name="likeForm">
                 {{photo.likes}}<i class="far fa-thumbs-up"></i>
             </form>
-
+   
 
 
 
