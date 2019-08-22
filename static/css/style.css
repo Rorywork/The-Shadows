@@ -105,6 +105,8 @@ label {
     display: block;
     width: 100%;
     height: auto;
+    -webkit-filter: grayscale(100%);
+            filter: grayscale(100%);
 }
 
 .overlay {
@@ -119,6 +121,10 @@ label {
     -webkit-transition: .5s ease;
     transition: .5s ease;
     background-color: rgba(0, 0, 0, 0.8);
+}
+
+.col-12{
+    padding: 0px;
 }
 
 .container-overlay:hover .overlay {
@@ -255,6 +261,10 @@ label {
 
 .success {
     list-style: none;
+    color: black;
+}
+
+.error {
+    list-style: none;
     color: red;
-    background-color: grey;
 }

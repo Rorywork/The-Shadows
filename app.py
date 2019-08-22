@@ -65,7 +65,7 @@ def create():
         pagination = Pagination(page=page, per_page=5, total=allphotos.count(),
                                 search=SEARCH, record_name='photos', bs_version=BS_VERSION,
                                 css_framework='bootstrap', show_single_page=False)
-
+        flash("The photo was uploaded to the site.", 'success')
     return render_template('showphotos.html', photos=allphotos, pagination=pagination)
 
 
@@ -104,7 +104,7 @@ def showphotos():
     tot = MONGO.db.photos.find().count()
     pagination = Pagination(page=page, per_page=5, total=allphotos.count(),
                             search=SEARCH, record_name='photos', bs_version=BS_VERSION,
-                            css_framework='bootstrap', show_single_page=False)
+                            css_framework='bootstrap', show_single_page=False)                        
     return render_template('showphotos.html', photos=allphotos, grp=grp,
                            total=tot, pagination=pagination)
 
@@ -254,6 +254,7 @@ def login():
                 session['logged_in'] = True
                 session['username'] = username
 
+                flash('You are now logged in', 'success')
                 return redirect(url_for('showphotos'))
             else:
                 error = 'Invalid Login'
@@ -270,6 +271,7 @@ def login():
 @APP.route('/logout')
 def logout():
     """Used to logout of the site"""
+    flash('You are now logged out', 'success')
     session.clear()
     return redirect(url_for('login'))
 
