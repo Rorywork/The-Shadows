@@ -1,4 +1,4 @@
-'''This is the overall controlling program for The Shadows webste'''
+'''This is the overall controlling program for The Shadows website'''
 import os
 from functools import wraps
 from flask import Flask, flash, render_template, redirect, request, url_for, session, logging
