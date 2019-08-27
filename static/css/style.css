@@ -40,6 +40,9 @@ footer {
     color: rgb(0, 0, 0) !important;
 }
 
+#thumb-top-left{
+    position: absolute;
+}
 
 /* Home Page
 
