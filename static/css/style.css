@@ -32,6 +32,15 @@ footer {
     padding: 10px;
 }
 
+.nav-link{
+    color: rgb(117, 115, 115) !important;
+}
+
+.nav-link:hover{
+    color: rgb(0, 0, 0) !important;
+}
+
+
 /* Home Page
 
 The Parallax is used to create the scrolling effect on the home page */
