@@ -1,7 +1,7 @@
 /* Layout Styles */
 body {
     height: 100vh;
-    width: 99vw;
+    width: 100vw;
     font-size: 16px;
 }
 
@@ -33,6 +33,7 @@ footer {
 }
 
 /* Home Page
+
 The Parallax is used to create the scrolling effect on the home page */
 
 .parallax {
@@ -51,7 +52,13 @@ The Parallax is used to create the scrolling effect on the home page */
     background-image: url("https://images.pexels.com/photos/959314/pexels-photo-959314.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
 }
 
+#main-image{
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
 /* The overlay is what shows the text sitting over the parallax */
+
 
 #img-overlay {
     font-size: 50px;
