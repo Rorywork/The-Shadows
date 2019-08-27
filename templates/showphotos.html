@@ -47,15 +47,11 @@
                     </div>
                 </div>
 
-
-
-
-
             </div>
 
 
-            <button class="btn btn-primary" onclick="showhidecomments('com{{photo._id}}')"><i
-                class="fas fa-minus"></i></button>
+            <button class="btn btn-primary" onclick="showhidecomments('com{{photo._id}}')">
+                <i id="com{{photo._id}}" class="fas fa-minus"></i></button>
                 &nbsp;
                 &nbsp;
                 &nbsp;
@@ -86,12 +82,8 @@
             </form>
 
 
-   
-
-
-
         </div>
-
+        <br>
         {% for comment in photo.comments %}
         <div class="com{{photo._id}}">
             <p><i>{{comment}}</i></p>
@@ -99,12 +91,7 @@
         {% endfor %}
 
 
-
     </section>
-
-
-
-
 
 
     {% endfor %}
@@ -121,7 +108,9 @@
                 x[i].style.display = "none";
             }
         }
-        console.log("xxx");
+        // Toggle +/- icon using the divClass unique identifier
+        document.getElementById(divClass).className = ( document.getElementById(divClass).className == 'fas fa-minus')
+         ? 'fas fa-plus' : 'fas fa-minus'
     }
 
     function ToggleVisibility(divClass) {
