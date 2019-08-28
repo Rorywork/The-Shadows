@@ -166,12 +166,11 @@ def editphotodetails(photoid):
     form.image_description.data = photo2edit['image_description']
     form.image_file.data = photo2edit['image_file']
     if request.method == 'POST' and form.validate():
-        username = request.form['username']
         image_name = request.form['image_name']
         image_description = request.form['image_description']
         image_category = request.form['image_category']
         MONGO.db.photos.update_one({"_id": ObjectId(photoid)}, {
-            '$set': {'username': username, 'image_name': image_name,
+            '$set': {'image_name': image_name,
                      'image_description': image_description, "image_category": image_category}})
 
         flash('Photo {} has been updated.'.format(image_name), 'success')

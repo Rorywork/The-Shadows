@@ -9,16 +9,16 @@
       <img src={{url_for('file', filename=form.image_file.data)}} class="image-thumbnail" alt="Responsive image">
     </div>
     <div>
-      Username<input placeholder="Username" type="text" name="username" value={{form.username.data}}>
+      Username {{form.username.data}}
     </div>
 
     <div>
-      Image Name<input placeholder="Image Name" type="text" name="image_name" value="{{form.image_name.data}}">
+      Image Name<input placeholder="Image Name" type="text" name="image_name" value="{{form.image_name.data}}" required>
     </div>
 
     <div>
       Image Description<input placeholder="Image Description" type="text" name="image_description"
-        value="{{form.image_description.data}}">
+        value="{{form.image_description.data}}" required>
     </div>
 
 

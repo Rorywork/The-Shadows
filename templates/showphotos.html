@@ -38,7 +38,7 @@
                     </div>
                     <div id="bottom-right-overlay">
                         <p id="username-text">{{photo.username}}</p><br>
-                        {% if session.username == "Rorywork" %}
+                        {% if session.username == "Rorywork" or session.username == photo.username %}
                         <a class="btn btn-secondary" href="/editphotodetails/{{photo._id}}"><i class="material-icons"><i
                                     class="fas fa-edit"></i></a>
                         <a class="btn btn-secondary" href="/deletephoto/{{photo._id}}"><i class="material-icons"><i
