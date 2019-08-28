@@ -42,9 +42,9 @@ The primary goal of the The Shadows is the provide a web application where users
 
 #### Wireframe mockups
 
-[PC]()  
-[Tablet]()  
-[Mobile]()
+[PC]('https://raw.githubusercontent.com/Rorywork/milestone-project-3/master/wireframes/desktop-wireframes.PNG')  
+[Tablet]('https://raw.githubusercontent.com/Rorywork/milestone-project-3/master/wireframes/tablet-wireframes.PNG')  
+[Mobile]('https://raw.githubusercontent.com/Rorywork/milestone-project-3/master/wireframes/mobile-wireframes.PNG')
 
 ## Features
 
