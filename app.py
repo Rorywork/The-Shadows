@@ -123,8 +123,9 @@ def showphotosbycategory(category):
            ]
     grp = list(MONGO.db.photos.aggregate(agr))
     tot = MONGO.db.photos.find().count()
-    pagination = Pagination(page=page, per_page=5, total=catphotos.count(
-    ), search=SEARCH, record_name='photos', bs_version=BS_VERSION, css_framework='bootstrap', show_single_page=False)
+    pagination = Pagination(page=page, per_page=5, total=catphotos.count(), 
+                            search=SEARCH, record_name='photos', bs_version=BS_VERSION, 
+                            css_framework='bootstrap', show_single_page=False)
     return render_template('showphotos.html', photos=catphotos, grp=grp, total=tot, pagination=pagination)
 
 
