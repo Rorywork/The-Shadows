@@ -104,7 +104,7 @@ def showphotos():
     tot = MONGO.db.photos.find().count()
     pagination = Pagination(page=page, per_page=5, total=allphotos.count(),
                             search=SEARCH, record_name='photos', bs_version=BS_VERSION,
-                            css_framework='bootstrap', show_single_page=False)                        
+                            css_framework='bootstrap', show_single_page=False)
     return render_template('showphotos.html', photos=allphotos, grp=grp,
                            total=tot, pagination=pagination)
 
@@ -161,7 +161,6 @@ def editphotodetails(photoid):
     """Used for editing photographs when logged in as superuser"""
     photo2edit = MONGO.db.photos.find_one_or_404({"_id": ObjectId(photoid)})
     form = PhotoForm(request.form)
-    print("xxxxx" + photo2edit['image_category'])
     form.username.data = photo2edit['username']
     form.image_name.data = photo2edit['image_name']
     form.image_description.data = photo2edit['image_description']
@@ -227,14 +226,19 @@ def register():
         email = form.email.data
         username = form.username.data
         password = sha256_crypt.encrypt(str(form.password.data))
-        # insert into the MongoDB
-        MONGO.db.users.insert(
-            {'name': name, 'email': email, 'username': username, 'password': password})
-        session['logged_in'] = True
-        session['username'] = username
-        flash('You are now registered and have full access to the site', 'success')
-
-        return redirect(url_for('showphotos'))
+        # check username is not already registered
+        users = MONGO.db.users
+        num_user = users.find({"username": username}).count()
+        if num_user == 0:
+            # insert into the MongoDB
+            MONGO.db.users.insert(
+                {'name': name, 'email': email, 'username': username, 'password': password})
+            session['logged_in'] = True
+            session['username'] = username
+            flash('You are now registered and have full access to the site', 'success')
+            return redirect(url_for('showphotos'))
+        else:
+            flash('Username is already registered. Please enter a new one.', 'error')
     return render_template('register.html', form=form)
 
 
