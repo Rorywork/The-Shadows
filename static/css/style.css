@@ -77,7 +77,13 @@ The Parallax is used to create the scrolling effect on the home page */
     font-size: 1rem;
     text-align: center;
     color: rgb(255, 255, 255);
-    padding-top: 500px;
+    padding-top: 200px;
+}
+
+#text-small{
+    font-size: 1.6rem;
+    padding-top: 15px;
+    color: rgb(0, 0, 0);
 }
 
 .highlight {
