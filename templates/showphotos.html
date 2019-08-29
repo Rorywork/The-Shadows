@@ -62,14 +62,14 @@
                 "/login"
             {% endif %}
              method="post" name="commentForm">
-                <input type="text" name="comment">&nbsp;
+                <input type="text" name="comment" required>&nbsp;
                 <button class="btn btn-secondary" type="submit" name="commentForm"><i
                     class="fas fa-comments"></i></button>
             </form>
 
 
 
-                    
+            {% if session.username != photo.username %}    
             <form id="thumb-top-left" action=
             {% if session.logged_in %}
                 "/addlike/{{photo._id}}"
@@ -80,6 +80,7 @@
                 <button class="btn btn-primary" type="submit" value="I like it" name="likeForm">
                 {{photo.likes}} <i class="far fa-thumbs-up"></i></button>
             </form>
+            {% endif %}
 
 
         </div>
