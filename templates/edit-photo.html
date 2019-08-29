@@ -2,22 +2,26 @@
 
 {% block body %}
 
-<div id="upload-photo-form" class="container">
+<div id="edit-photo-form" class="container">
   <form method="POST" action="" enctype="multipart/form-data">
 
     <div>
-      <img src={{url_for('file', filename=form.image_file.data)}} class="image-thumbnail" alt="Responsive image">
-    </div>
-    <div>
-      Username {{form.username.data}}
+      <img src={{url_for('file', filename=form.image_file.data)}} class="image-thumbnail align" alt="Responsive image">
     </div>
 
-    <div>
-      Image Name<input placeholder="Image Name" type="text" name="image_name" value="{{form.image_name.data}}" required>
+    <div class="form-group">
+    <label>Username</label>
+    {{form.username.data}}
     </div>
 
-    <div>
-      Image Description<input placeholder="Image Description" type="text" name="image_description"
+    <div class="form-group">
+    <label for="editFormImageName">Image Name</label>
+    <input id="editFormImageName" placeholder="Image Name" type="text" name="image_name" value="{{form.image_name.data}}" required>
+    </div>
+
+    <div class="form-group">
+    <label for="editFormImageDescription">Image Description</label>
+    <input placeholder="Image Description" type="text" name="image_description" id="editFormImageDescription"
         value="{{form.image_description.data}}" required>
     </div>
 
@@ -25,8 +29,10 @@
     <div>
 
     </div>
+
     <div class="form-group">
-      <select class="form-control" name="image_category">
+      <label for="editCategoryField">Current Category {{form.image_category.data}}</label>
+      <select id="editCategoryField" class="form-control align" name="image_category">
         <option>Change Category</option>
         <option>People</option>
         <option>Animals</option>
@@ -40,11 +46,16 @@
     </div>
 
 
-    <input type="submit">
+    <button id="editPhotoSubmit" type="submit" class="btn btn-primary align">Submit</button>
 </div>
 
 </form>
 </div>
+
+
+
+
+
 
 
 

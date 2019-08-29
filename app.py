@@ -152,6 +152,7 @@ class PhotoForm(Form):
     image_description = StringField(
         'Image Description', [validators.Length(min=1, max=200)])
     image_file = StringField('Image File', [validators.Length(min=1, max=500)])
+    image_category = StringField('Image Category', [validators.Length(min=1, max=100)])
 
 
 
@@ -160,11 +161,12 @@ def editphotodetails(photoid):
     """Used for editing photographs when logged in as superuser"""
     photo2edit = MONGO.db.photos.find_one_or_404({"_id": ObjectId(photoid)})
     form = PhotoForm(request.form)
-    print(photo2edit['username'])
+    print("xxxxx" + photo2edit['image_category'])
     form.username.data = photo2edit['username']
     form.image_name.data = photo2edit['image_name']
     form.image_description.data = photo2edit['image_description']
     form.image_file.data = photo2edit['image_file']
+    form.image_category.data = photo2edit['image_category']
     if request.method == 'POST' and form.validate():
         image_name = request.form['image_name']
         image_description = request.form['image_description']

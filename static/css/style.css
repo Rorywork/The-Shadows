@@ -122,7 +122,7 @@ The Parallax is used to create the scrolling effect on the home page */
     color: black;
 }
 
-#upload-photo-form {
+#edit-photo-form {
     margin-top: 10%;
 }
 
@@ -306,9 +306,17 @@ label {
     margin-bottom: 50px;
 }
 
+#editPhotoSubmit{
+    margin-top: 40px;
+}
+
 
 #registerForm {
     margin-top: 50px;
+}
+
+.align{
+    margin-left: 30px;
 }
 
 .register-form {
@@ -323,6 +331,10 @@ label {
 .error {
     list-style: none;
     color: red;
+}
+
+.jumbotron{
+    margin-top: 40px;
 }
 
 @media (min-width: 601px) {
