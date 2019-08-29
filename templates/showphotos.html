@@ -62,7 +62,7 @@
                 "/login"
             {% endif %}
              method="post" name="commentForm">
-                <input type="text" name="comment" required>&nbsp;
+                <input class="comment-input" type="text" name="comment" required>&nbsp;
                 <button class="btn btn-secondary" type="submit" name="commentForm"><i
                     class="fas fa-comments"></i></button>
             </form>
@@ -87,7 +87,7 @@
         <br>
         {% for comment in photo.comments %}
         <div class="com{{photo._id}}">
-            <p><i>{{comment}}</i></p>
+            <p class="comment-text"><i class="fas fa-user"></i> {{comment}}</p>
         </div>
         {% endfor %}
 

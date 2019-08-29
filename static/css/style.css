@@ -91,6 +91,25 @@ The Parallax is used to create the scrolling effect on the home page */
     padding: 100px 0px 270px 0px;
 }
 
+#index-info-two{
+    position: absolute;
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    margin-top: 400px;
+    padding: 50px 0px 30px 0px;
+}
+
+.descriptive-text-2 {
+    font-size: 20px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+}
+
+.author{
+    font-style: italic;
+    padding-bottom: 30px;
+}
+
 .descriptive-text {
     font-size: 20px;
     text-align: center;
@@ -160,6 +179,17 @@ label {
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     text-align: center;
+}
+
+.comment-text{
+    color: rgb(0, 0, 0);
+    font-style: italic;
+}
+
+.comment-input{
+    width: 400px;
+    border-radius: 2%;
+    background-color: rgb(245, 242, 242);
 }
 
 #username-text {
