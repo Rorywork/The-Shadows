@@ -310,6 +310,10 @@ label {
     margin-top: 40px;
 }
 
+#editFormImageDescription{
+    width: 450px;
+}
+
 
 #registerForm {
     margin-top: 50px;
