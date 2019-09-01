@@ -106,6 +106,10 @@ All the images can be seen by any user regardless of whether they are logged in 
 
 Rorywork is the superuser, that account (mine) can edit or delete any image on the site so that I can ensure the site works properly and people don't upload inappropriate images or content. 
 
+#### Javascript
+The site originally used a JS folder with js file, however I ended up having to embed the Javascript on the showphotos.html page in order to make the application work. In the next
+version I would like to have a seperate Javascript file however I have not managed to find a solution to the problem yet, it is proposed that I will solve this problem in version 2. For now though the application works and is fully functional. 
+
 #### Features to be implemented in future
 - Privacy policy, as the website captures user data I will create a policy in the future.
 - GDPR cookie opt-in - this will be a pop up on the landing page and the register page so the user can decide what cookies they want. 
