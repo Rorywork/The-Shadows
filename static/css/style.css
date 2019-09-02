@@ -188,7 +188,7 @@ label {
 }
 
 .comment-input{
-    width: 400px;
+    width: 300px;
     border-radius: 2%;
     background-color: rgb(245, 242, 242);
 }
@@ -242,37 +242,12 @@ label {
     height: auto;
 }
 
-.pagination-page-info {
-    padding-top: 50px;
-    width: 25%;
-    font-size: 12px;
-    margin: 0 auto;
-
-}
-
-.pagination-page-info b {
-    color: black;
-    background: #b8b1b1;
-    padding-left: 2px;
-    padding: .1em .25em;
-    font-size: 150%;
-}
-
-.pagination-page-links {
-    background-color: rgb(128, 37, 37);
-}
 
 .pagination-bottom {
     padding-top: 150px;
-    width: 20%;
-    margin: 0 auto;
+    margin: 15%;
 }
 
-.pagination-center {
-    padding-top: 5px;
-    width: 20%;
-    margin: 0 auto;
-}
 
 #add-comment {
     margin-top: 10px;
@@ -367,6 +342,11 @@ label {
         font-size: 20px;
         text-align: center;
         color: rgb(255, 255, 255);
+    }
+    .pagination-bottom {
+        padding-top: 150px;
+        width: 20%;
+        margin: 0 auto;
     }
 }
 
