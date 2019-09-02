@@ -99,7 +99,7 @@ Below this is a form which allows the user to upload there own images, it has th
 
 There is then a submit button which will create a new entry within MongoDB.
 
-#### Create/Read/Edit/Delete
+#### Create/Read/Update/Delete (CRUD)
 Users can upload there own photos when they have an account, they also can edit or delete photos which they have uploaded. This is done using the buttons on the overlay, these will only be seen on photos the user has uploaded. 
 
 All the images can be seen by any user regardless of whether they are logged in to the site.
@@ -141,10 +141,10 @@ The following  must be installed  on your machine:
 
 #### Instructions
 
-1.  Save a copy of the Github repository located at  [https://github.com/Rorywork/milestone-project-3](https://github.com/Rorywork/milestone-project-3)  by clicking the "download zip" button at the top of the page and extracting the zip file to your chosen folder. If you have Git installed on your system, you can clone the repository with the following command.
+1.  Save a copy of the Github repository located at  [https://github.com/Rorywork/The-Shadows](https://github.com/Rorywork/The-Shadows)  by clicking the "download zip" button at the top of the page and extracting the zip file to your chosen folder. If you have Git installed on your system, you can clone the repository with the following command.
 
 ```
-git clone https://github.com/Rorywork/milestone-project-3
+git clone https://github.com/Rorywork/The-Shadows
 
 ```
 
